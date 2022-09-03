@@ -18,6 +18,7 @@ alias gs='git status'
 alias config='/usr/bin/git --git-dir=/Users/alex/Documents/dotfiles --work-tree=$HOME'
 alias v='nvim .'
 # alias nv='nvim . "+Telescope find_files"'
+alias ctags="~/./ctags/ctags"
 
 export NVM_DIR="/Users/alex/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
