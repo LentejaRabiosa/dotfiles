@@ -1,8 +1,6 @@
 call plug#begin()
-" Plug 'preservim/nerdtree'
 Plug 'arzg/vim-colors-xcode' " Theme
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Syntax support
-Plug 'nvim-lua/plenary.nvim' " No idea xd
+Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } " Files
 call plug#end()
 
@@ -13,6 +11,10 @@ au ColorScheme * hi NonText ctermbg=none
 au ColorScheme * hi EndOfBuffer ctermbg=none
 au ColorScheme * hi LineNr ctermbg=none
 au ColorScheme * hi StatusLine ctermbg=none
+
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+au ColorScheme * hi Comment cterm=italic
 
 """""""""""""""""""""""""""""
 " COLORSCHEMES
@@ -36,7 +38,6 @@ syntax enable
 filetype plugin on
 set number relativenumber
 set cursorline
-" nmap <F6> :NERDTreeToggle<CR>
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -44,12 +45,9 @@ set expandtab
 set path+=**
 set wildmenu
 
-command! MakeTags !ctags -R .
-" NOW WE CAN:
-" - Use ^] to jump to tag under cursor
-" - Use g^] for ambiguous tags
-" - Use ^t to jump back up the tag stack
-
+"""""""""""""""""""""""""""""
+" SPLITS
+""""""""""""""""""""""""""""" 
 set splitbelow splitright
 
 nnoremap <C-h> <C-w>h
@@ -57,10 +55,11 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-noremap <silent> <C-Left> :vertical resize +3<CR>
-noremap <silent> <C-Right> :vertical resize -3<CR>
-noremap <silent> <C-Up> :horizontal resize +3<CR>
-noremap <silent> <C-Down> :horizontal resize -3<CR>
+" Does not work for me xd
+noremap <C-Left> :vertical resize +3<CR>
+noremap <C-Right> :vertical resize -3<CR>
+noremap <C-Up> :horizontal resize +3<CR>
+noremap <C-Down> :horizontal resize -3<CR>
 
 map <Leader>th <C-w>t<C-w>h
 map <Leader>tk <C-w>t<C-w>k
