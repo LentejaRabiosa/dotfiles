@@ -56,10 +56,10 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Does not work for me xd
-noremap <C-Left> :vertical resize +3<CR>
-noremap <C-Right> :vertical resize -3<CR>
-noremap <C-Up> :horizontal resize +3<CR>
-noremap <C-Down> :horizontal resize -3<CR>
+noremap <A-Left> :vertical resize +3<CR>
+noremap <A-Right> :vertical resize -3<CR>
+noremap <A-Up> :horizontal resize +3<CR>
+noremap <A-Down> :horizontal resize -3<CR>
 
 map <Leader>th <C-w>t<C-w>h
 map <Leader>tk <C-w>t<C-w>k
