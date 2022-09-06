@@ -7,7 +7,7 @@ PS1='\[\e[0m\]$?\[\e[0;92m\] → \[\e[0;96m\]\W\[\e[0m\] \[\e[0m\]'
 
 BP='~/.bash_profile'
 
-alias edit='nvim /Users/alex/.bash_profile'
+alias edit='nvim ~/.bash_profile'
 alias ..='cd ..'
 alias ip='curl ifconfig.me; echo'
 alias localip='ipconfig getifaddr en1'
@@ -18,7 +18,8 @@ alias gs='git status'
 alias config='/usr/bin/git --git-dir=/Users/alex/Documents/dotfiles --work-tree=$HOME'
 alias v='nvim .'
 # alias nv='nvim . "+Telescope find_files"'
-alias ctags="~/./ctags/ctags"
+alias ctags='~/./ctags/ctags'
+alias stu='python3 ~/Documents/stu/main.py'
 
 export NVM_DIR="/Users/alex/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
