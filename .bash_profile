@@ -8,6 +8,7 @@ PS1='\[\e[0m\]$?\[\e[0;92m\] → \[\e[0;96m\]\W\[\e[0m\] \[\e[0m\]'
 BP='~/.bash_profile'
 
 alias edit='nvim ~/.bash_profile'
+alias vimrc='nvim ~/.config/nvim/init.vim'
 alias ..='cd ..'
 alias ip='curl ifconfig.me; echo'
 alias localip='ipconfig getifaddr en1'
