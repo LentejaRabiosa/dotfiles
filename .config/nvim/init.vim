@@ -25,10 +25,27 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-cmdline'
+
+" VSNIP
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" NERDCommenter
+Plug 'preservim/nerdcommenter'
 call plug#end()
 
-source ~/.config/nvim/plug-config/signify.vim
-luafile cmp.lua
+filetype plugin on
+
+source  ~/.config/nvim/plug-config/signify.vim
+source  ~/.config/nvim/plug-config/nerdcommenter.vim
+luafile ~/.config/nvim/plug-config/cmp.lua
+luafile ~/.config/nvim/plug-config/lspconfig.lua
+luafile ~/.config/nvim/plug-config/treesitter.lua
 
 " terminal background color: rgb(31, 33, 41)
 
@@ -117,6 +134,6 @@ noremap fs :Telescope live_grep<CR>
 " SNIPETS
 """"""""""""""""""""""""""""" 
 nnoremap <leader>{ o{<CR><CR>}<ESC>kA<tab>
-nnoremap <C-s>     Astd::cout <<  << std::endl;<ESC>4bhi
-nnoremap qc        I/* <ESC>A */<ESC>
-nnoremap <C-q>     I<Del><Del><Del><ESC>A<BS><BS><BS><ESC>
+" nnoremap <C-s>     Astd::cout <<  << std::endl;<ESC>4bhi
+" nnoremap qc        I/* <ESC>A */<ESC>
+" nnoremap <C-q>     I<Del><Del><Del><ESC>A<BS><BS><BS><ESC>
