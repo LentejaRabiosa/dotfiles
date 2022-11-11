@@ -37,12 +37,20 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " NERDCommenter
 Plug 'preservim/nerdcommenter'
+
+" MARKDOWN
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
+" LaTex
+Plug 'lervag/vimtex'
 call plug#end()
 
 filetype plugin on
 
 source  ~/.config/nvim/plug-config/signify.vim
 source  ~/.config/nvim/plug-config/nerdcommenter.vim
+" source  ~/.config/nvim/plug-config/markdownpreview.vim
+source  ~/.config/nvim/plug-config/vimtex.vim
 luafile ~/.config/nvim/plug-config/cmp.lua
 luafile ~/.config/nvim/plug-config/lspconfig.lua
 luafile ~/.config/nvim/plug-config/treesitter.lua
