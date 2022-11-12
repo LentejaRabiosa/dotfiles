@@ -42,7 +42,7 @@ Plug 'preservim/nerdcommenter'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 " LaTex
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 call plug#end()
 
 filetype plugin on
@@ -50,7 +50,7 @@ filetype plugin on
 source  ~/.config/nvim/plug-config/signify.vim
 source  ~/.config/nvim/plug-config/nerdcommenter.vim
 " source  ~/.config/nvim/plug-config/markdownpreview.vim
-source  ~/.config/nvim/plug-config/vimtex.vim
+" source  ~/.config/nvim/plug-config/vimtex.vim
 luafile ~/.config/nvim/plug-config/cmp.lua
 luafile ~/.config/nvim/plug-config/lspconfig.lua
 luafile ~/.config/nvim/plug-config/treesitter.lua
@@ -117,10 +117,14 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-noremap <A-h> :vertical resize +3<CR>
-noremap <A-l> :vertical resize -3<CR>
-noremap <A-k> :horizontal resize +3<CR>
-noremap <A-j> :horizontal resize -3<CR>
+" noremap <A-h> :vertical resize +3<CR>
+" noremap <A-l> :vertical resize -3<CR>
+" noremap <A-k> :horizontal resize +3<CR>
+" noremap <A-j> :horizontal resize -3<CR>
+noremap <left> :vertical resize +3<CR>
+noremap <right> :vertical resize -3<CR>
+noremap <up> :horizontal resize +3<CR>
+noremap <down> :horizontal resize -3<CR>
 
 map <Leader>th <C-w>t<C-w>h
 map <Leader>tk <C-w>t<C-w>k
