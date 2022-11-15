@@ -42,7 +42,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } " Files
 
 " Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
-
 " Plug 'nvim-tree/nvim-tree.lua'
 
 " GIT INTEGRATION
@@ -55,18 +54,18 @@ Plug 'junegunn/gv.vim'
 " :GV          # or :GV? can be used in visual mode to track the changes in the selected lines.
 
 " CMP
-Plug 'hrsh7th/nvim-cmp'
-Plug 'delphinus/cmp-ctags'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-cmdline'
+" Plug 'hrsh7th/nvim-cmp'
+" Plug 'delphinus/cmp-ctags'
+" Plug 'hrsh7th/cmp-buffer'
+" Plug 'hrsh7th/cmp-path'
+" Plug 'hrsh7th/cmp-nvim-lua'
+" Plug 'hrsh7th/cmp-nvim-lsp'
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'hrsh7th/cmp-cmdline'
 
 " VSNIP
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
+" Plug 'hrsh7th/cmp-vsnip'
+" Plug 'hrsh7th/vim-vsnip'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -77,8 +76,8 @@ Plug 'preservim/nerdcommenter'
 " MARKDOWN
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
-" LaTex
-" Plug 'lervag/vimtex'
+" WHICHKEY
+" Plug 'liuchengxu/vim-which-key'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -88,15 +87,12 @@ call plug#end()
 "    -> ~/.config/nvim/plug-config/
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype plugin on
-source  ~/.config/nvim/plug-config/signify.vim
-source  ~/.config/nvim/plug-config/nerdcommenter.vim
+source ~/.config/nvim/plug-config/signify.vim
+source ~/.config/nvim/plug-config/nerdcommenter.vim
 " source  ~/.config/nvim/plug-config/markdownpreview.vim
-" source  ~/.config/nvim/plug-config/vimtex.vim
-luafile ~/.config/nvim/plug-config/cmp.lua
-luafile ~/.config/nvim/plug-config/lspconfig.lua
+" source ~/.config/nvim/plug-config/whichkey.vim
+" luafile ~/.config/nvim/plug-config/cmp.lua
 luafile ~/.config/nvim/plug-config/treesitter.lua
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -146,6 +142,8 @@ set expandtab
 set lazyredraw
 set path+=**
 set wildmenu
+set enc=utf-8
+set fillchars+=vert:\
 " set list
 " set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
@@ -168,9 +166,8 @@ noremap <left> :vertical resize +3<CR>
 noremap <right> :vertical resize -3<CR>
 noremap <up> :horizontal resize +3<CR>
 noremap <down> :horizontal resize -3<CR>
-map <Leader>th <C-w>t<C-w>h
-map <Leader>tk <C-w>t<C-w>k
-" set fillchars+=vert:\
+" map <Leader>th <C-w>t<C-w>h
+" map <Leader>tk <C-w>t<C-w>k
 noremap ff :Telescope find_files<CR>
 noremap fg :Telescope live_grep<CR>
 noremap fb :Telescope buffers<CR>
@@ -178,13 +175,10 @@ noremap <leader>fh <:Telescope help_tags<CR>
 noremap gb :Telescope git_branches<CR>
 noremap gc :Telescope git_commits<CR>
 noremap fs :Telescope live_grep<CR>
+noremap <space>gs :Git status<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "    SNIPETS
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>{ o{<CR><CR>}<ESC>kA<tab>
-" nnoremap <C-s>     Astd::cout <<  << std::endl;<ESC>4bhi
-" nnoremap qc        I/* <ESC>A */<ESC>
-" nnoremap <C-q>     I<Del><Del><Del><ESC>A<BS><BS><BS><ESC>
