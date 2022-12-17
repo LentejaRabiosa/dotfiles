@@ -40,6 +40,7 @@ alias l='ls -al'
 alias gs='git status'
 alias config='/usr/bin/git --git-dir=/Users/alex/Documents/dotfiles --work-tree=$HOME'
 alias ctags='~/./ctags/ctags'
+alias vima='nvim -u ~/.config/nvim/martian/init.lua'
 
 export BP
 export PATH
