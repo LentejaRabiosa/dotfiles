@@ -30,17 +30,16 @@ BP='~/.bash_profile'
 PS1='\[\e[0m\]$?\[\e[92m\] \[\e[0;38;5;117m\]\W \[\e[0;38;5;177m\]» \[\e[0m\]'
 
 alias bashrc='nvim ~/.bash_profile'
-alias vimrc='nvim ~/.config/nvim/init.vim'
+alias vimrc='nvim ~/.config/nvim'
 alias ..='cd ..'
 alias ip='curl ifconfig.me; echo'
 alias localip='ipconfig getifaddr en1'
-alias ls='ls -color'
+alias ls='ls -G'
 alias la='ls -a'
-alias l='ls -al'
+alias l='ls -la'
 alias gs='git status'
-alias config='/usr/bin/git --git-dir=/Users/alex/Documents/dotfiles --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/Documents/dotfiles --work-tree=$HOME'
 alias ctags='~/./ctags/ctags'
-alias vima='nvim -u ~/.config/nvim/martian/init.lua'
 
 export BP
 export PATH
