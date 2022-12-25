@@ -74,10 +74,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["dashboard-nvim"] = {
+  ["Comment.nvim"] = {
     loaded = true,
-    path = "/Users/alex/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
-    url = "https://github.com/glepnir/dashboard-nvim"
+    path = "/Users/alex/.local/share/nvim/site/pack/packer/start/Comment.nvim",
+    url = "https://github.com/numToStr/Comment.nvim"
   },
   ["nvim-treesitter"] = {
     loaded = true,

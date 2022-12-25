@@ -23,6 +23,9 @@ map("n", "<leader>fb", "<CMD>Telescope file_browser<CR>")
 map("n", "<leader>fw", "<CMD>Telescope live_grep<CR>")
 map("n", "<leader>ht", "<CMD>Telescope colorscheme<CR>")
 
+-- :Ex command
+map("n", "<leader>pe", "<CMD>Ex<CR>")
+
 -- Tab width switch
 map("n", "<leader>st", function()
 	if vim.o.tabstop == 4 then

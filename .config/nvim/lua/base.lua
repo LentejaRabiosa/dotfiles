@@ -3,7 +3,7 @@ local o = vim.o
 local opt = vim.opt
 
 -- vim.cmd('syntax on')
-vim.api.nvim_command('filetype plugin indent on')
+-- vim.api.nvim_command('filetype plugin indent on')
 
 -- o.termguicolors = true
 -- o.background = 'dark'
@@ -12,8 +12,8 @@ vim.api.nvim_command('filetype plugin indent on')
 -- o.hidden = true
 
 -- Decrease update time
-o.timeoutlen = 500
-o.updatetime = 200
+-- o.timeoutlen = 500
+-- o.updatetime = 200
 
 -- Number of screen lines to keep above and below the cursor
 o.scrolloff = 8

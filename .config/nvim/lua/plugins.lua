@@ -16,12 +16,6 @@ packer.startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 
-	-- Dashboard is a nice start screen for nvim
-	use("glepnir/dashboard-nvim")
-
-	-- Line
-	
-
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -31,13 +25,16 @@ packer.startup(function(use)
 
 	use("nvim-treesitter/nvim-treesitter") -- Treesitter Syntax Highlighting
 
+	-- Comments
+	use("numToStr/Comment.nvim")
+
     -- Themes/Colorshemes
     use("arzg/vim-colors-xcode")
 	use("joshdick/onedark.vim")
 	use({
     'rose-pine/neovim',
     as = 'rose-pine',
-	})
+})
 
 	if packer_bootstrap then
 		packer.sync()
