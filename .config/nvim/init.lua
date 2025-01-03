@@ -437,6 +437,11 @@ require('lualine').setup {
 
 require('mini.align').setup()
 
+require("trouble").setup({
+    auto_close = true,
+    auto_refresh = true,
+})
+
 local harpoon = require("harpoon")
 -- REQUIRED
 harpoon:setup()
@@ -464,10 +469,11 @@ vim.opt.undodir        = vim.fn.expand("~/.undodir")
 
 vim.keymap.set("n", "<leader>ff",       require('fzf-lua').files,                                    { desc = "Fzf Files" })
 vim.keymap.set("n", "<leader>fb",       require('fzf-lua').buffers,                                  { desc = "Fzf Buffers" })
+vim.keymap.set("n", "<leader>fg",       require('fzf-lua').git_files,                                { desc = "Fzf Git Files" })
 vim.keymap.set("n", "<leader>fr",       require('fzf-lua').lsp_references,                           { desc = "Fzf References (LSP)" })
 vim.keymap.set("n", "<leader>fds",      require('fzf-lua').lsp_document_symbols,                     { desc = "Fzf Documents Symbols (LSP)" })
-vim.keymap.set("n", "<leader>fdd",      require('fzf-lua').diagnostics_document,                     { desc = "Fzf Diagnostics Document (LSP)" })
 vim.keymap.set("n", "<leader>f/",       require('fzf-lua').live_grep,                                { desc = "Fzf Seach In Current Project" })
+vim.keymap.set("n", "<leader>td",       "<cmd>Trouble diagnostics toggle<cr>", { desc = "Fzf Seach In Current Project" })
 vim.keymap.set("n", "<leader>ng",       function() neogit.open()                                end, { desc = "Open Neogit" })
 vim.keymap.set("n", "<leader>ha",       function() harpoon:list():add()                         end)
 vim.keymap.set("n", "<leader>hh",       function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
