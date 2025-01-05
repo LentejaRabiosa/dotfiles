@@ -8,6 +8,7 @@ if status is-interactive
 
     alias ls="eza"
     alias l="eza -la"
+    alias ll="l -s type"
     alias t="eza -T"
     alias hx="helix"
     alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
