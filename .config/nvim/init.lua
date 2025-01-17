@@ -60,9 +60,9 @@ require("lazy").setup({
                 keymap = {
                     preset = 'none',
                     ['<Enter>'] = { 'accept' , 'fallback' },
-                    ['<Tab>'] = { 'select_next', 'fallback' },
-                    ['<S-Tab>'] = { 'select_prev', 'fallback' },
-                    ['<Esc>'] = { 'cancel', 'fallback' },
+                    ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+                    ['<S-Tab>'] = { 'select_prev', 'snippet_forward', 'fallback' },
+                    ['<Esc>'] = { 'fallback' },
                 },
 
                 appearance = {
@@ -420,12 +420,30 @@ require('mini.align').setup()
 require("trouble").setup({
     auto_close = true,
     auto_refresh = true,
+    -- pinned = true,
+    modes = {
+        diagnostics = {
+            -- auto_open = true,
+        },
+    }
 })
 
 local harpoon = require("harpoon")
 -- REQUIRED
 harpoon:setup()
 -- REQUIRED
+
+-- Create an autocommand group for Markdown and MDX settings
+vim.api.nvim_create_augroup("MarkdownMaxWidth", { clear = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = "MarkdownMaxWidth",
+    pattern = { "markdown", "mdx" },
+    callback = function()
+        vim.opt_local.textwidth = 80  -- Set maximum line width to 80
+        vim.opt_local.wrap = false  -- Disable line wrapping
+    end,
+})
 
 vim.g.undotree_WindowLayout = 2
 vim.g.undotree_SetFocusWhenToggle = 1
@@ -448,13 +466,25 @@ vim.opt.expandtab      = true
 vim.opt.undofile       = true
 vim.opt.undodir        = vim.fn.expand("~/.undodir")
 
+vim.opt.list = false
+vim.opt.listchars = {
+    space = "·",
+    tab = "▸ ",
+    trail = "•",
+    extends = "▶",
+    precedes = "◀",
+    nbsp = "␣",
+}
+
+vim.keymap.set("n", "<leader>w",        ":set list!<cr>",                                            { desc = "Toggle whispace" })
 vim.keymap.set("n", "<leader>ff",       require('fzf-lua').files,                                    { desc = "Fzf Files" })
 vim.keymap.set("n", "<leader>fb",       require('fzf-lua').buffers,                                  { desc = "Fzf Buffers" })
 vim.keymap.set("n", "<leader>fg",       require('fzf-lua').git_files,                                { desc = "Fzf Git Files" })
 vim.keymap.set("n", "<leader>fr",       require('fzf-lua').lsp_references,                           { desc = "Fzf References (LSP)" })
 vim.keymap.set("n", "<leader>fds",      require('fzf-lua').lsp_document_symbols,                     { desc = "Fzf Documents Symbols (LSP)" })
 vim.keymap.set("n", "<leader>f/",       require('fzf-lua').live_grep,                                { desc = "Fzf Seach In Current Project" })
-vim.keymap.set("n", "<leader>td",       "<cmd>Trouble diagnostics toggle<cr>", { desc = "Fzf Seach In Current Project" })
+vim.keymap.set("n", "<leader>td",       "<cmd>Trouble diagnostics toggle<cr>",                       { desc = "Trouble Diagnostics Toggle" })
+vim.keymap.set("n", "<leader>tr",       "<cmd>Trouble diagnostics refresh<cr>",                      { desc = "Trouble Diagnostics Refresh" })
 -- vim.keymap.set("n", "<leader>ng",       function() neogit.open()                                end, { desc = "Open Neogit" })
 vim.keymap.set("n", "<leader>ha",       function() harpoon:list():add()                         end)
 vim.keymap.set("n", "<leader>hh",       function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
