@@ -1,0 +1,4 @@
+theme = "kanagawa_dragon"
+
+[editor]
+line-number = "relative"
