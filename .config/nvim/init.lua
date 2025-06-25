@@ -148,6 +148,7 @@ require("lazy").setup({
                     rust_analyzer = {},
                     tailwindcss = {},
                     mdx_analyzer = {},
+                    pyright = {},
                 }
             },
             config = function(_, opts)
@@ -540,3 +541,5 @@ vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'LSP Rename' })
 vim.keymap.set({"i"}, "<C-K>", function() require('luasnip').expand() end, {silent = true})
 vim.keymap.set({"i", "s"}, "<C-L>", function() require('luasnip').jump( 1) end, {silent = true})
 vim.keymap.set({"i", "s"}, "<C-J>", function() require('luasnip').jump(-1) end, {silent = true})
+
+vim.keymap.set('n', '-', ':Ex<cr>', { desc = 'Open file explorer' })
