@@ -1,7 +1,3 @@
--- TODO
---   clipboard
---   keymaps
-
 vim.g.mapleader = " "
 vim.o.number = true
 vim.o.relativenumber = true
@@ -21,6 +17,8 @@ vim.o.ignorecase = true
 local map = vim.keymap.set
 
 map("n", "<leader>o", ":update<CR> :source<CR>")
+map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
+map({ 'n', 'v', 'x' }, '<leader>d', '"+d')
 
 vim.pack.add({
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
