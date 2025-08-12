@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.signcolumn = "yes"
@@ -13,12 +14,14 @@ vim.o.undodir = "/home/alex/.undodir"
 vim.o.incsearch = true
 vim.o.smartindent = true
 vim.o.ignorecase = true
+-- vim.o.textwidth = 80
 
 local map = vim.keymap.set
 
 map("n", "<leader>o", ":update<CR> :source<CR>")
 map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
 map({ 'n', 'v', 'x' }, '<leader>d', '"+d')
+map("i", "kj", "<Esc>")
 
 vim.pack.add({
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
@@ -27,6 +30,14 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/lervag/vimtex" },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
+	{ src = "https://github.com/windwp/nvim-autopairs" },
+	{ src = "https://github.com/neovim/nvim-lspconfig" },
+
+	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
+	{ src = "https://github.com/hrsh7th/cmp-buffer" },
+	{ src = "https://github.com/hrsh7th/cmp-path" },
+	{ src = "https://github.com/hrsh7th/cmp-cmdline" },
+	{ src = "https://github.com/hrsh7th/nvim-cmp" },
 })
 
 require "nvim-treesitter.configs".setup({
@@ -79,8 +90,58 @@ end, { silent = true })
 
 map("n", "<leader>lf", vim.lsp.buf.format)
 map("n", "<leader>lr", vim.lsp.buf.rename)
-vim.lsp.enable({ "lua_ls", "clangd", "rust_analyzer", "svelte", "astro", "ts_ls" })
-vim.cmd("set completeopt+=noselect")
+
+local language_servers = { "lua_ls", "clangd", "rust_analyzer", "svelte", "astro", "ts_ls" }
+vim.lsp.enable(language_servers)
+
+local cmp = require("cmp")
+cmp.setup({
+	snippet = {
+		expand = function(args)
+			require('luasnip').lsp_expand(args.body)
+		end,
+	},
+	mapping = cmp.mapping.preset.insert({
+		['<C-b>'] = cmp.mapping.scroll_docs(-4),
+		['<C-f>'] = cmp.mapping.scroll_docs(4),
+		['<C-Space>'] = cmp.mapping.complete(),
+		['<C-e>'] = cmp.mapping.abort(),
+		['<CR>'] = cmp.mapping.confirm({ select = true }),
+	}),
+	sources = cmp.config.sources({
+		{ name = 'nvim_lsp' },
+		{ name = 'luasnip' },
+	}, {
+		{ name = 'buffer' },
+	})
+})
+cmp.setup.cmdline({ '/', '?' }, {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = 'buffer' }
+	}
+})
+cmp.setup.cmdline(':', {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = 'path' }
+	}, {
+		{ name = 'cmdline' }
+	}),
+	matching = { disallow_symbol_nonprefix_matching = false }
+})
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+for _, server in pairs(language_servers) do
+	require('lspconfig')[server].setup {
+		capabilities = capabilities
+	}
+end
+cmp.event:on(
+	'confirm_done',
+	require('nvim-autopairs.completion.cmp').on_confirm_done()
+)
+
+require("nvim-autopairs").setup()
 
 require("kanagawa").setup()
-vim.cmd("colorscheme kanagawa-dragon")
+vim.cmd("colorscheme kanagawa")

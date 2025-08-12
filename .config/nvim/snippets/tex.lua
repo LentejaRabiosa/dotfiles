@@ -83,8 +83,50 @@ return {
 	),
 
 	snippet(
-		{ trig = "h1", snippetType = "autosnippet", condition = line_begin },
+		{ trig = "equ", snippetType = "autosnippet", condition = line_begin },
+		fmta(
+			[[
+				\begin{equation}\label{<>}
+				<>
+				\end{equation}
+			]],
+			{
+				insertn(1),
+				insertn(2),
+			}
+		)
+	),
+
+	snippet(
+		{ trig = "SSE", snippetType = "autosnippet", condition = line_begin },
 		fmta("\\section{<>}",
+			{
+				insertn(1),
+			}
+		)
+	),
+
+	snippet(
+		{ trig = "SSS", snippetType = "autosnippet", condition = line_begin },
+		fmta("\\subsection{<>}",
+			{
+				insertn(1),
+			}
+		)
+	),
+
+	snippet(
+		{ trig = "SS2", snippetType = "autosnippet", condition = line_begin },
+		fmta("\\subsubsection{<>}",
+			{
+				insertn(1),
+			}
+		)
+	),
+
+	snippet(
+		{ trig = "SPG", snippetType = "autosnippet", condition = line_begin },
+		fmta("\\paragraph{<>}",
 			{
 				insertn(1),
 			}
@@ -102,17 +144,17 @@ return {
 	),
 
 	snippet(
-		{ trig = "sr", snippetType = "autosnippet", condition = in_mathzone },
+		{ trig = "sr", wordTrig = false, snippetType = "autosnippet", condition = in_mathzone },
 		textn("^{2}")
 	),
 
 	snippet(
-		{ trig = "cb", snippetType = "autosnippet", condition = in_mathzone },
+		{ trig = "cb", wordTrig = false, snippetType = "autosnippet", condition = in_mathzone },
 		textn("^{3}")
 	),
 
 	snippet(
-		{ trig = "rs", snippetType = "autosnippet", condition = in_mathzone },
+		{ trig = "rs", wordTrig = false, snippetType = "autosnippet", condition = in_mathzone },
 		fmta("^{<>}",
 			{
 				insertn(1),
@@ -121,7 +163,7 @@ return {
 	),
 
 	snippet(
-		{ trig = "sq", snippetType = "autosnippet", condition = in_mathzone },
+		{ trig = "sq", wordTrig = false, snippetType = "autosnippet", condition = in_mathzone },
 		fmta("\\sqrt{<>}",
 			{
 				insertn(1),
@@ -130,11 +172,16 @@ return {
 	),
 
 	snippet(
-		{ trig = "_", snippetType = "autosnippet", condition = in_mathzone },
+		{ trig = "_", wordTrig = false, snippetType = "autosnippet", condition = in_mathzone },
 		fmta("_{<>}",
 			{
 				insertn(1),
 			}
 		)
+	),
+
+	snippet(
+		{ trig = "·", wordTrig = false, snippetType = "autosnippet", condition = in_mathzone },
+		textn("\\cdot")
 	),
 }
