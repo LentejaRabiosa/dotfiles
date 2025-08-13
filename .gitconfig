@@ -1,0 +1,53 @@
+[core]
+	editor = nvim
+    pager = delta
+
+[user]
+	email = 71976518+LentejaRabiosa@users.noreply.github.com
+	name = Alejandro
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+
+[merge]
+    conflictstyle = zdiff3
+
+[color]
+    ui = auto
+
+[init]
+    defaultBranch = main
+
+[alias]
+    # Status and logs
+    s = status -s
+    st = status
+    l = log --oneline --graph --all --decorate
+    ll = log --pretty=format:'%C(yellow)%h %Cblue%ad %Creset%s%Cgreen [%cn]' --date=short
+
+    # Branch management
+    b = branch
+    ba = branch -a
+
+    # Commit and stash
+    cm = commit -m
+    amend = commit --amend
+    stash-save = stash save
+
+    # Pull, push, and fetch
+    pl = pull
+    ps = push
+    fe = fetch --all --prune
+
+    # Quick diffs
+    df = diff
+    dfc = diff --cached
+
+    # Interactions
+    co = checkout
+    rb = rebase
+    m = merge --no-ff
