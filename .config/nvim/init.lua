@@ -21,7 +21,6 @@ local map = vim.keymap.set
 map("n", "<leader>o", ":update<CR> :source<CR>")
 map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
 map({ 'n', 'v', 'x' }, '<leader>d', '"+d')
-map("i", "kj", "<Esc>")
 
 vim.pack.add({
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
