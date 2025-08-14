@@ -38,7 +38,7 @@ button {
 }
 
 #workspaces button.active {
-    background-color: #2A2A37;
+    background-color: #1F1F28;
 }
 
 #workspaces button:hover {
@@ -46,7 +46,7 @@ button {
 }
 
 #workspaces button.focused {
-    background-color: #2A2A37;
+    background-color: #1F1F28;
 }
 
 #workspaces button.urgent {
@@ -78,7 +78,7 @@ button {
 #mpd {
     padding: 0 10px;
     color: #DCD7BA;
-	background-color: #2A2A37;
+	background-color: #1F1F28;
 }
 
 #window,
