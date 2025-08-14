@@ -4,7 +4,7 @@
 }
 
 window#waybar {
-    background-color: #1F1F28;
+    background-color: #181616;
     color: #DCD7BA;
     transition-property: background-color;
     transition-duration: .5s;
@@ -51,7 +51,7 @@ button {
 
 #workspaces button.urgent {
     background-color: #FF5D62;
-	color: #1F1F28;
+	color: #181616;
 }
 
 #mode {
@@ -104,7 +104,7 @@ button {
 @keyframes blink {
     to {
         background-color: #DCD7BA;
-        color: #1F1F28;
+        color: #181616;
     }
 }
 

@@ -143,4 +143,4 @@ cmp.event:on(
 require("nvim-autopairs").setup()
 
 require("kanagawa").setup()
-vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme kanagawa-dragon")
