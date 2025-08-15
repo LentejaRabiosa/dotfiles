@@ -91,7 +91,7 @@ map("n", "<leader>lf", vim.lsp.buf.format)
 map("n", "<leader>lr", vim.lsp.buf.rename)
 
 local language_servers = { "lua_ls", "clangd", "rust_analyzer", "svelte", "astro", "ts_ls" }
-vim.lsp.enable(language_servers)
+-- vim.lsp.enable(language_servers)
 
 local cmp = require("cmp")
 cmp.setup({
