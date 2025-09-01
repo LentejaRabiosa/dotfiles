@@ -38,15 +38,17 @@ button {
 }
 
 #workspaces button.active {
-    background-color: #1F1F28;
+    background-color: #c5c9c5;
+	color: #181616;
 }
 
 #workspaces button:hover {
-    background: #363646;
+    background: #1E1F28;
+	color: #c5c9c5;
 }
 
 #workspaces button.focused {
-    background-color: #1F1F28;
+    background-color: #181616;
 }
 
 #workspaces button.urgent {
@@ -78,7 +80,7 @@ button {
 #mpd {
     padding: 0 10px;
     color: #c5c9c5;
-	background-color: #1F1F28;
+	background-color: inherit;
 }
 
 #window,
