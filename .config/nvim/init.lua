@@ -19,6 +19,8 @@ vim.o.ignorecase = true
 local map = vim.keymap.set
 
 map("n", "<leader>o", ":update<CR> :source<CR>")
+map("n", "<leader>w", ":w<CR>")
+map("n", "<leader>a", ":wa<CR>")
 map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
 map({ 'n', 'v', 'x' }, '<leader>d', '"+d')
 
@@ -27,8 +29,8 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/lervag/vimtex" },
-	{ src = "https://github.com/L3MON4D3/LuaSnip" },
+	-- { src = "https://github.com/lervag/vimtex" },
+	-- { src = "https://github.com/L3MON4D3/LuaSnip" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 
@@ -40,7 +42,7 @@ vim.pack.add({
 })
 
 require "nvim-treesitter.configs".setup({
-	ensure_installed = { "svelte", "typescript", "javascript", "cpp", "rust", "astro" },
+	ensure_installed = { "svelte", "typescript", "javascript", "cpp", "rust", "astro", "zig" },
 	highlight = { enable = true },
 	modules = {},
 	sync_install = true,
@@ -50,10 +52,10 @@ require "nvim-treesitter.configs".setup({
 
 local fzf = require("fzf-lua")
 fzf.setup({
-	"fzf-vim",
-	winopts = {
-		border = "solid",
-	},
+	-- "fzf-vim",
+	-- winopts = {
+	-- 	border = "solid",
+	-- },
 })
 map("n", "<leader>f", fzf.files)
 map("n", "<leader>b", fzf.buffers)
@@ -90,7 +92,7 @@ end, { silent = true })
 map("n", "<leader>lf", vim.lsp.buf.format)
 map("n", "<leader>lr", vim.lsp.buf.rename)
 
-local language_servers = { "lua_ls", "clangd", "rust_analyzer", "svelte", "astro", "ts_ls" }
+local language_servers = { "lua_ls", "clangd", "rust_analyzer", "svelte", "astro", "ts_ls", "cssls", "zls" }
 -- vim.lsp.enable(language_servers)
 
 local cmp = require("cmp")
