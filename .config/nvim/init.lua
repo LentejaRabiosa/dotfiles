@@ -31,12 +31,21 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/Saghen/blink.cmp" },
+})
 
-	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
-	{ src = "https://github.com/hrsh7th/cmp-buffer" },
-	{ src = "https://github.com/hrsh7th/cmp-path" },
-	{ src = "https://github.com/hrsh7th/cmp-cmdline" },
-	{ src = "https://github.com/hrsh7th/nvim-cmp" },
+require("blink.cmp").setup({
+	cmdline = { enabled = true },
+	ghost_text = { enabled = true },
+	sources = {
+		default = { 'lsp', 'buffer', 'snippets', 'path' },
+	},
+	keymap = {
+		['<Tab>'] = { 'select_and_accept' },
+	},
+	fuzzy = {
+		implementation = "prefer_rust_with_warning",
+	},
 })
 
 require "nvim-treesitter.configs".setup({
@@ -51,9 +60,16 @@ require "nvim-treesitter.configs".setup({
 local fzf = require("fzf-lua")
 fzf.setup({
 	-- "fzf-vim",
-	-- winopts = {
-	-- 	border = "solid",
-	-- },
+	winopts = {
+		border = "solid",
+		fullscreen = true,
+		preview = {
+			border = "solid",
+			winopts	= {
+				number = false,
+			},
+		},
+	},
 })
 map("n", "<leader>f", fzf.files)
 map("n", "<leader>b", fzf.buffers)
@@ -75,54 +91,7 @@ map("n", "<leader>lf", vim.lsp.buf.format)
 map("n", "<leader>lr", vim.lsp.buf.rename)
 
 local language_servers = { "lua_ls", "clangd", "rust_analyzer", "svelte", "astro", "ts_ls", "cssls", "zls" }
--- vim.lsp.enable(language_servers)
-
-local cmp = require("cmp")
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			require('luasnip').lsp_expand(args.body)
-		end,
-	},
-	mapping = cmp.mapping.preset.insert({
-		['<C-b>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.abort(),
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
-	}),
-	sources = cmp.config.sources({
-		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
-	}, {
-		{ name = 'buffer' },
-	})
-})
-cmp.setup.cmdline({ '/', '?' }, {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = {
-		{ name = 'buffer' }
-	}
-})
-cmp.setup.cmdline(':', {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({
-		{ name = 'path' }
-	}, {
-		{ name = 'cmdline' }
-	}),
-	matching = { disallow_symbol_nonprefix_matching = false }
-})
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-for _, server in pairs(language_servers) do
-	require('lspconfig')[server].setup {
-		capabilities = capabilities
-	}
-end
-cmp.event:on(
-	'confirm_done',
-	require('nvim-autopairs.completion.cmp').on_confirm_done()
-)
+vim.lsp.enable(language_servers)
 
 require("nvim-autopairs").setup()
 
