@@ -31,7 +31,7 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
-	{ src = "https://github.com/Saghen/blink.cmp" },
+	{ src = "https://github.com/Saghen/blink.cmp", version = "tags/v1.6.0" },
 })
 
 require("blink.cmp").setup({
@@ -45,6 +45,9 @@ require("blink.cmp").setup({
 	},
 	fuzzy = {
 		implementation = "prefer_rust_with_warning",
+		prebuilt_binaries = {
+			download = true,
+		},
 	},
 })
 
