@@ -7,10 +7,10 @@
     // Choose the order of the modules
     "modules-left": [
 		"hyprland/workspaces",
+		"hyprland/window"
     ],
 
     "modules-center": [
-		"hyprland/window",
     ],
 
     "modules-right": [
@@ -19,7 +19,7 @@
         "temperature",
         "backlight",
         "battery",
-        "clock",
+        "clock"
     ],
 
     // Modules configuration
@@ -28,7 +28,7 @@
 	},
 
 	"hyprland/window": {
-        "tooltip": false,
+        "tooltip": false
 	},
 
     "keyboard-state": {
@@ -43,17 +43,17 @@
 
     "clock": {
         "tooltip": false,
-        "format-alt": "{:%Y-%m-%d}",
+        "format-alt": "{:%Y-%m-%d}"
     },
 
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false,
+        "tooltip": false
     },
 
     "memory": {
         "format": "{}% ",
-        "tooltip": false,
+        "tooltip": false
     },
 
     "temperature": {
@@ -63,7 +63,7 @@
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""],
-        "tooltip": false,
+        "tooltip": false
     },
 
     "backlight": {
@@ -88,5 +88,5 @@
         // "format-full": "",
         "format-icons": ["", "", "", "", ""],
         "tooltip": false
-    },
+    }
 }
