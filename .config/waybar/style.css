@@ -104,22 +104,8 @@ button {
 	background-color: #26A65B;
 }
 
-@keyframes blink {
-	to {
-		background-color: #c5c9c5;
-		color: #181616;
-	}
-}
-
-/* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-	background-color: #FF5D62;
-	color: #c5c9c5;
-	animation-name: blink;
-	animation-duration: 0.5s;
-	animation-timing-function: steps(12);
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+	color: #FF5D62;
 }
 
 label:focus {
