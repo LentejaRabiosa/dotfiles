@@ -52,7 +52,7 @@ require("blink.cmp").setup({
 })
 
 require "nvim-treesitter.configs".setup({
-	ensure_installed = { "svelte", "typescript", "javascript", "cpp", "rust", "astro", "zig" },
+	ensure_installed = { "svelte", "typescript", "javascript", "cpp", "rust", "astro", "zig", "python" },
 	highlight = { enable = true },
 	modules = {},
 	sync_install = true,
@@ -93,7 +93,7 @@ vim.g.vimtex_view_method = "zathura"
 map("n", "<leader>lf", vim.lsp.buf.format)
 map("n", "<leader>lr", vim.lsp.buf.rename)
 
-local language_servers = { "lua_ls", "clangd", "rust_analyzer", "svelte", "astro", "ts_ls", "cssls", "zls" }
+local language_servers = { "lua_ls", "clangd", "rust_analyzer", "svelte", "astro", "ts_ls", "cssls", "zls", "pyright" }
 vim.lsp.enable(language_servers)
 
 require("nvim-autopairs").setup()
