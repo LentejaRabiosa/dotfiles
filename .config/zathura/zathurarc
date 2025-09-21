@@ -1,4 +1,4 @@
-set font "JetBrainsMono 16"
+set font "JetBrainsMono 12"
 
 set notification-error-bg       "#181616"
 set notification-error-fg       "#E46876"
