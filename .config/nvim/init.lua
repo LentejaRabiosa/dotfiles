@@ -36,7 +36,7 @@ vim.pack.add({
 
 require("blink.cmp").setup({
 	cmdline = { enabled = true },
-	ghost_text = { enabled = true },
+	completion = { ghost_text = { enabled = true } },
 	sources = {
 		default = { 'lsp', 'buffer', 'snippets', 'path' },
 	},
