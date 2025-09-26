@@ -41,7 +41,7 @@ require("blink.cmp").setup({
 		default = { 'lsp', 'buffer', 'snippets', 'path' },
 	},
 	keymap = {
-		['<Tab>'] = { 'select_and_accept' },
+		['<Tab>'] = { 'select_and_accept', 'fallback' },
 	},
 	fuzzy = {
 		implementation = "prefer_rust_with_warning",
