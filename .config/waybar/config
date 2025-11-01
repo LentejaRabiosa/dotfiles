@@ -18,6 +18,7 @@
         "memory",
         "temperature",
         "backlight",
+		"wireplumber",
         "battery",
         "clock"
     ],
@@ -72,6 +73,14 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""],
         "tooltip": false
     },
+	
+	"wireplumber": {
+		"format": "{volume}% {icon}",
+		"format-muted": "",
+		"max-volume": 150,
+		"scroll-step": 0.2,
+		"format-icons": ["", "", ""]
+	},
 
     "battery": {
         "states": {
