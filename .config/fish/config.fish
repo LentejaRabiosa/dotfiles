@@ -8,6 +8,8 @@ if status is-interactive
     alias hx="helix"
 
     fish_vi_key_bindings
+
+	fastfetch
 end
 
 # bun
