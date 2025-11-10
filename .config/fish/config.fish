@@ -6,6 +6,7 @@ if status is-interactive
     alias ll="eza -1 -s type"
     alias t="l -T"
     alias hx="helix"
+	alias tex="nvim -u ~/.config/nvim/tex.lua"
 
     fish_vi_key_bindings
 
@@ -16,6 +17,7 @@ end
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 set --export VCPKG_ROOT "$HOME/vcpkg"
+set --export EDITOR nvim
 
 # Kanagawa Fish shell theme
 set -l foreground DCD7BA normal
