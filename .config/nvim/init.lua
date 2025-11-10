@@ -36,7 +36,9 @@ vim.pack.add({
 
 require("blink.cmp").setup({
 	cmdline = { enabled = true },
-	completion = { ghost_text = { enabled = true } },
+	completion = {
+		ghost_text = { enabled = true },
+	},
 	sources = {
 		default = { 'lsp', 'buffer', 'snippets', 'path' },
 	},
@@ -52,7 +54,7 @@ require("blink.cmp").setup({
 })
 
 require "nvim-treesitter.configs".setup({
-	ensure_installed = { "svelte", "typescript", "javascript", "cpp", "rust", "astro", "zig", "python" },
+	ensure_installed = { "svelte", "typescript", "javascript", "cpp", "rust", "astro", "zig", "python", "go" },
 	highlight = { enable = true },
 	modules = {},
 	sync_install = true,
@@ -87,13 +89,10 @@ require("oil").setup({
 })
 map("n", "-", "<CMD>Oil<CR>")
 
-vim.cmd('filetype plugin indent on')
-vim.g.vimtex_view_method = "zathura"
-
 map("n", "<leader>lf", vim.lsp.buf.format)
 map("n", "<leader>lr", vim.lsp.buf.rename)
 
-local language_servers = { "lua_ls", "clangd", "rust_analyzer", "svelte", "astro", "ts_ls", "cssls", "zls", "pyright" }
+local language_servers = { "lua_ls", "clangd", "rust_analyzer", "svelte", "astro", "ts_ls", "cssls", "zls", "basedpyright", "gopls" }
 vim.lsp.enable(language_servers)
 
 require("nvim-autopairs").setup()
