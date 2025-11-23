@@ -1,0 +1,55 @@
+set $mod Mod4
+
+bindsym $mod+Shift+Return exec foot
+bindsym $mod+p exec firefox
+bindsym $mod+o exec fuzzel
+
+bindsym $mod+Shift+c kill
+bindsym $mod+Shift+e exit
+bindsym $mod+Shift+r reload
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+
+input "type:keyboard" {
+	xkb_layout "es"
+    xkb_options caps:swapescape,ctrl:swap_lalt_lctl
+}
+
+input "type:touchpad" {
+	dwt enabled
+    tap enabled
+    middle_emulation enabled
+}
+
+default_border pixel 0
+
+bar {
+    font pango:JetBrains Mono 12
+	workspace_buttons no
+    position top
+    status_command i3status-rs
+    # colors {
+    #     separator #666666
+    #     background #222222
+    #     statusline #dddddd
+    #     focused_workspace #0088CC #0088CC #ffffff
+    #     active_workspace #333333 #333333 #ffffff
+    #     inactive_workspace #333333 #333333 #888888
+    #     urgent_workspace #2f343a #900000 #ffffff
+    # }
+}
+
+# Fondo para todas las pantallas
+output * bg "~/Downloads/Nix Silk 04 Fierce.png" fill
+
