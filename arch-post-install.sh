@@ -24,7 +24,11 @@ passwd $user
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 pacman -Sy --noconfirm
-pacman -S --noconfirm neovim git sway foot firefox eza fd fzf ripgrep networkmanager brightnessctl grub os-prober efibootmgr
+pacman -S --noconfirm neovim git sway foot firefox eza fd fzf ripgrep networkmanager openssh brightnessctl grub os-prober efibootmgr
+
+ssh-keygen -t ed25519 -C $hostname
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 sed -i 's/^#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' /etc/default/grub
