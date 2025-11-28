@@ -35,21 +35,9 @@ input "type:touchpad" {
 default_border pixel 0
 
 bar {
-    font pango:JetBrains Mono 12
-	workspace_buttons no
+    # font JetBrains Mono 12
+    workspace_buttons no
     position top
     status_command i3status-rs
-    # colors {
-    #     separator #666666
-    #     background #222222
-    #     statusline #dddddd
-    #     focused_workspace #0088CC #0088CC #ffffff
-    #     active_workspace #333333 #333333 #ffffff
-    #     inactive_workspace #333333 #333333 #888888
-    #     urgent_workspace #2f343a #900000 #ffffff
-    # }
 }
-
-# Fondo para todas las pantallas
-output * bg "~/Downloads/Nix Silk 04 Fierce.png" fill
 
