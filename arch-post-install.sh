@@ -24,7 +24,7 @@ passwd $user
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 pacman -Sy --noconfirm
-pacman -S --noconfirm neovim git sway foot firefox eza fd less fzf ripgrep networkmanager openssh brightnessctl grub os-prober efibootmgr
+pacman -S --noconfirm neovim git sway foot firefox eza fd less fzf ripgrep networkmanager openssh brightnessctl grub os-prober efibootmgr ttf-jetbrains-mono-nerd
 
 ssh-keygen -t ed25519 -C $hostname
 eval "$(ssh-agent -s)"
