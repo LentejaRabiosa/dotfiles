@@ -19,5 +19,8 @@ vim.o.ignorecase = true
 -- 	virtual_lines = { current_line = true }, -- new lines
 -- 	underline = true,
 -- })
+
 vim.lsp.config['basedpyright'] = require 'lsp.basedpyright'
-vim.lsp.enable({ 'basedpyright' })
+vim.lsp.config['rust_analyzer'] = require 'lsp.rust_analyzer'
+vim.lsp.config['clangd'] = require 'lsp.clangd'
+vim.lsp.enable({ 'basedpyright', 'rust_analyzer', 'clangd' })
