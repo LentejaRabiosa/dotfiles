@@ -1,27 +1,29 @@
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.signcolumn = "yes"
+vim.o.signcolumn = 'yes'
 vim.o.termguicolors = true
 vim.o.wrap = false
 vim.o.tabstop = 4 -- the tab key
 vim.o.shiftwidth = 4 -- <> operations
-vim.o.expandtab = false
+vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.swapfile = false
-vim.o.winborder = "solid"
+vim.o.winborder = 'solid'
 vim.o.undofile = true
-vim.o.undodir = vim.fn.expand("$HOME/.undodir")
+vim.o.undodir = vim.fn.expand('$HOME/.undodir')
 vim.o.incsearch = true
 vim.o.ignorecase = true
+vim.o.listchars= 'tab:> ,trail:·,nbsp:+'
+vim.o.list = true
 
 vim.keymap.set('n', '<leader>2', '<cmd>set tabstop=2 shiftwidth=2<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>4', '<cmd>set tabstop=4 shiftwidth=4<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
 
 -- vim.diagnostic.config({
--- 	virtual_text = false, -- in line
--- 	virtual_lines = { current_line = true }, -- new lines
--- 	underline = true,
+--     virtual_text = false, -- in line
+--     virtual_lines = { current_line = true }, -- new lines
+--     underline = true,
 -- })
 
 vim.lsp.config['basedpyright'] = require 'lsp.basedpyright'
