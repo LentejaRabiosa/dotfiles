@@ -14,6 +14,10 @@ vim.o.undodir = vim.fn.expand("$HOME/.undodir")
 vim.o.incsearch = true
 vim.o.ignorecase = true
 
+vim.keymap.set('n', '<leader>2', '<cmd>set tabstop=2 shiftwidth=2<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>4', '<cmd>set tabstop=4 shiftwidth=4<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
+
 -- vim.diagnostic.config({
 -- 	virtual_text = false, -- in line
 -- 	virtual_lines = { current_line = true }, -- new lines
