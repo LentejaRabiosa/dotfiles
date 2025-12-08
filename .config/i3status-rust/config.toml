@@ -1,16 +1,8 @@
 [theme]
-# theme = "plain"
 theme = "native"
-# [theme.overrides]
-# idle_bg = "#123456"
-# idle_fg = "#abcdef"
 
 [icons]
 icons = "none"
-# icons = "awesome4"
-# [icons.overrides]
-# bat = ["|E|", "|_|", "|=|", "|F|"]
-# bat_charging = "|^| "
 
 [[block]]
 block = "cpu"
@@ -31,7 +23,6 @@ critical_cpu = 90
 [[block]]
 block = "memory"
 format = " MEM $mem_total_used_percents.eng(w:2) "
-format_alt = " MEM $swap_used_percents.eng(w:2) "
 
 [[block]]
 block = "temperature"
