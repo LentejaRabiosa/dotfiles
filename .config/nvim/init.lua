@@ -1,3 +1,7 @@
+-- TODO: script to install/update plugins
+
+vim.g.mapleader = ' '
+
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.signcolumn = 'yes'
@@ -16,9 +20,17 @@ vim.o.ignorecase = true
 vim.o.listchars= 'tab:> ,trail:·,nbsp:+'
 vim.o.list = true
 
-vim.keymap.set('n', '<leader>2', '<cmd>set tabstop=2 shiftwidth=2<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>4', '<cmd>set tabstop=4 shiftwidth=4<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
+local map = vim.keymap.set
+
+map("n", "<leader>o", ":update<CR> :source<CR>")
+map("n", "<leader>w", ":w<CR>")
+map("n", "<leader>a", ":wa<CR>")
+map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
+map({ 'n', 'v', 'x' }, '<leader>d', '"+d')
+map('n', '<leader>2', '<cmd>set tabstop=2 shiftwidth=2<cr>', { noremap = true })
+map('n', '<leader>4', '<cmd>set tabstop=4 shiftwidth=4<cr>', { noremap = true })
+map('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
+map('n', '<leader>lf', vim.lsp.buf.format)
 
 -- vim.diagnostic.config({
 --     virtual_text = false, -- in line
@@ -29,4 +41,55 @@ vim.keymap.set('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { norema
 vim.lsp.config['basedpyright'] = require 'lsp.basedpyright'
 vim.lsp.config['rust_analyzer'] = require 'lsp.rust_analyzer'
 vim.lsp.config['clangd'] = require 'lsp.clangd'
-vim.lsp.enable({ 'basedpyright', 'rust_analyzer', 'clangd' })
+vim.lsp.config['ts_ls'] = require 'lsp.ts_ls'
+vim.lsp.config['svelte'] = require 'lsp.svelte'
+vim.lsp.config['cssls'] = require 'lsp.cssls'
+vim.lsp.enable({ 'basedpyright', 'rust_analyzer', 'clangd', 'ts_ls', 'svelte', 'cssls' })
+
+local fzf = require("fzf-lua")
+fzf.setup({
+    -- "fzf-vim",
+    winopts = {
+        border = "solid",
+        fullscreen = true,
+        preview = {
+            border = "solid",
+            winopts = {
+                number = false,
+            },
+        },
+    },
+})
+map("n", "<leader>f", fzf.files)
+map("n", "<leader>b", fzf.buffers)
+map("n", "<leader>ls", fzf.lsp_document_symbols)
+map("n", "<leader>ld", fzf.diagnostics_document)
+map("n", "<leader>r", fzf.registers)
+
+require "nvim-treesitter".setup({
+    ensure_installed = { "svelte", "typescript", "javascript", "html", "css", "cpp", "rust", "astro", "zig", "python", "go" },
+    highlight = { enable = true },
+    auto_install = false,
+})
+
+require("blink.cmp").setup({
+    cmdline = { enabled = true },
+    completion = {
+        ghost_text = { enabled = true },
+    },
+    sources = {
+        default = { 'lsp', 'buffer', 'snippets', 'path' },
+    },
+    keymap = {
+        ['<Tab>'] = { 'select_and_accept', 'fallback' },
+    },
+    fuzzy = {
+        implementation = "prefer_rust_with_warning",
+        prebuilt_binaries = {
+            download = true,
+        },
+    },
+})
+
+require("kanagawa").setup()
+vim.cmd("colorscheme kanagawa-dragon")
