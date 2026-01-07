@@ -6,11 +6,8 @@ if status is-interactive
     alias ll="eza -1 -s type"
     alias t="l -T"
     alias hx="helix"
-	alias tex="nvim -u ~/.config/nvim/tex.lua"
 
     fish_vi_key_bindings
-
-	fastfetch
 end
 
 # bun
