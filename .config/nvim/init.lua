@@ -1,10 +1,10 @@
--- TODO: script to install/update plugins
-
 vim.g.mapleader = ' '
 
+vim.o.scrolloff = 8
+vim.o.guicursor = ''
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = 'yes' -- default: yes
 vim.o.termguicolors = true
 vim.o.wrap = false
 vim.o.tabstop = 4 -- the tab key
@@ -48,7 +48,6 @@ vim.lsp.enable({ 'basedpyright', 'rust_analyzer', 'clangd', 'ts_ls', 'svelte', '
 
 local fzf = require("fzf-lua")
 fzf.setup({
-    -- "fzf-vim",
     winopts = {
         border = "solid",
         fullscreen = true,
@@ -66,11 +65,13 @@ map("n", "<leader>ls", fzf.lsp_document_symbols)
 map("n", "<leader>ld", fzf.diagnostics_document)
 map("n", "<leader>r", fzf.registers)
 
-require "nvim-treesitter".setup({
-    ensure_installed = { "svelte", "typescript", "javascript", "html", "css", "cpp", "rust", "astro", "zig", "python", "go" },
-    highlight = { enable = true },
-    auto_install = false,
-})
+local ts_parsers = { "svelte", "typescript", "javascript", "html", "css", "cpp", "rust", "astro", "zig", "python", "go" }
+for _, parser in ipairs(ts_parsers) do
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = { parser },
+      callback = function() vim.treesitter.start() end,
+    })
+end
 
 require("blink.cmp").setup({
     cmdline = { enabled = true },
@@ -91,5 +92,10 @@ require("blink.cmp").setup({
     },
 })
 
-require("kanagawa").setup()
-vim.cmd("colorscheme kanagawa-dragon")
+require("kanso").setup({
+    compile = true,
+    background = {
+        dark = "zen",
+    },
+})
+vim.cmd("colorscheme kanso")
