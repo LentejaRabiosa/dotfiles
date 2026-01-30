@@ -3,6 +3,8 @@ set $mod Mod4
 bindsym $mod+Shift+Return exec foot
 bindsym $mod+p exec firefox
 bindsym $mod+o exec fuzzel
+bindsym $mod+e exec emacs
+bindsym $mod+z exec zathura
 
 bindsym $mod+Shift+c kill
 bindsym $mod+Shift+e exit
