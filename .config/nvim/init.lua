@@ -44,7 +44,16 @@ vim.lsp.config['clangd'] = require 'lsp.clangd'
 vim.lsp.config['ts_ls'] = require 'lsp.ts_ls'
 vim.lsp.config['svelte'] = require 'lsp.svelte'
 vim.lsp.config['cssls'] = require 'lsp.cssls'
-vim.lsp.enable({ 'basedpyright', 'rust_analyzer', 'clangd', 'ts_ls', 'svelte', 'cssls' })
+vim.lsp.config['tinymist'] = require 'lsp.tinymist'
+vim.lsp.enable({
+    'basedpyright',
+    'rust_analyzer', 
+    'clangd',
+    'ts_ls',
+    'svelte',
+    'cssls',
+    'tinymist',
+})
 
 local fzf = require("fzf-lua")
 fzf.setup({
@@ -65,7 +74,20 @@ map("n", "<leader>ls", fzf.lsp_document_symbols)
 map("n", "<leader>ld", fzf.diagnostics_document)
 map("n", "<leader>r", fzf.registers)
 
-local ts_parsers = { "svelte", "typescript", "javascript", "html", "css", "cpp", "rust", "astro", "zig", "python", "go" }
+local ts_parsers = {
+    "svelte",
+    "typescript",
+    "javascript",
+    "html",
+    "css",
+    "cpp",
+    "rust",
+    "astro",
+    "zig",
+    "python",
+    "go",
+    "typst",
+}
 for _, parser in ipairs(ts_parsers) do
     vim.api.nvim_create_autocmd('FileType', {
       pattern = { parser },
@@ -95,7 +117,7 @@ require("blink.cmp").setup({
 require("kanso").setup({
     compile = true,
     background = {
-        dark = "zen",
+        dark = os.getenv("THEME") or "zen",
     },
 })
 vim.cmd("colorscheme kanso")
