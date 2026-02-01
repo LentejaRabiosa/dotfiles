@@ -1,21 +1,36 @@
 # My shitty . files
-There must be a script to install arch.
 
-## Minimal
-This is the minimal version of my system. No color scheme. No fancy stuff.
+ - arch linux install scripts
+ - neovim
+ - fish
+ - foot
+ - sway (i3status-rust)
 
- - WM: sway + i3status-rust
- - Terminal: foot
- - Code editor: nvim
+## Arch Linux install scripts
 
-## Full setup
-These are all the configuration files for the tools I use in my daily workflow.
-The color scheme is based on Kanagawa Dragon.
+ 1. Set up partitions and file system
+ 2. Connect to the internet
+ 3. Run `arch-install.sh`
+ 4. On success, run `arch-post-install.sh`
 
- - WM: Hyprland (hyprlock, waybar)
- - Terminal: foot
- - Code editor: Neovim (Helix)
- - Shell: fish
- - Launcher/fuzzy finder: fuzzel
- - Display manager: Ly
- - PDF viewer: zathura
+Note: `nmcli-connect-eduroam.sh` is a command template, not a script (yet)
+
+## Neovim
+There is no third party plugin manager for this config. All plugins repos are
+cloned inside `.local/share/nvim/site/pack/manual/start/` directory using the
+`install-neovim-plugins.sh` script.
+
+## Fish
+Nothing special, just `pure` plugin installed with `fisher` plugin manager.
+There is a `theme.fish` function to select different variants from the kanso
+theme used by neovim and foot.
+
+## Foot
+Nothing special.
+
+## Sway
+Minimal config. Requirements:
+ - i3status-rust (for the status bar)
+ - foot
+ - firefox
+ - zathura
