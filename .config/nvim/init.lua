@@ -22,7 +22,7 @@ vim.o.list = true
 
 local map = vim.keymap.set
 
-map("n", "<leader>o", ":update<CR> :source<CR>")
+map("n", "<leader>r", ":update<CR> :source<CR>")
 map("n", "<leader>w", ":w<CR>")
 map("n", "<leader>a", ":wa<CR>")
 map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
@@ -31,6 +31,7 @@ map('n', '<leader>2', '<cmd>set tabstop=2 shiftwidth=2<cr>', { noremap = true })
 map('n', '<leader>4', '<cmd>set tabstop=4 shiftwidth=4<cr>', { noremap = true })
 map('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
 map('n', '<leader>lf', vim.lsp.buf.format)
+map('n', '<leader>o', '<cmd>Oil<cr>')
 
 -- vim.diagnostic.config({
 --     virtual_text = false, -- in line
@@ -94,6 +95,40 @@ for _, parser in ipairs(ts_parsers) do
       callback = function() vim.treesitter.start() end,
     })
 end
+
+require("oil").setup({
+    default_file_explorer = true,
+    columns = {
+        "permissions",
+        "size",
+        "mtime",
+    },
+    delete_to_trash = false,
+    skip_confirm_for_simple_edits = false,
+    prompt_save_on_select_new_entry = true,
+    lsp_file_methods = {
+        enabled = true,
+        timeout_ms = 1000,
+        autosave_changes = false,
+    },
+    constrain_cursor = "editable", -- or "name"
+    view_options = {
+        show_hidden = true,
+        is_hidden_file = function(name, bufnr)
+            local m = name:match("^%.")
+            return m ~= nil
+        end,
+        is_always_hidden = function(name, bufnr)
+            return false
+        end,
+        natural_order = "fast",
+        case_insensitive = false,
+        sort = {
+            { "type", "asc" },
+            { "name", "asc" },
+        },
+    },
+})
 
 require("blink.cmp").setup({
     cmdline = { enabled = true },
