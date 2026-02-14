@@ -22,7 +22,6 @@ vim.o.list = true
 
 local map = vim.keymap.set
 
-map("n", "<leader>r", ":update<CR> :source<CR>")
 map("n", "<leader>w", ":w<CR>")
 map("n", "<leader>a", ":wa<CR>")
 map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
@@ -32,6 +31,38 @@ map('n', '<leader>4', '<cmd>set tabstop=4 shiftwidth=4<cr>', { noremap = true })
 map('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
 map('n', '<leader>lf', vim.lsp.buf.format)
 map('n', '<leader>o', '<cmd>Oil<cr>')
+
+require("zk").setup({
+    picker = "fzf_lua",
+
+    lsp = {
+        -- `config` is passed to `vim.lsp.start(config)`
+        config = {
+          name = "zk",
+          cmd = { "zk", "lsp" },
+          filetypes = { "markdown" },
+          -- on_attach = ...
+        },
+
+        -- automatically attach buffers in a zk notebook that match the given filetypes
+        auto_attach = {
+            enabled = true,
+        },
+    },
+})
+
+local zk_cmd = require("zk.commands")
+map('n', '<leader>zn', zk_cmd.get("ZkNotes"))
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "typst",
+    callback = function()
+        vim.opt_local.linebreak = true
+        vim.opt_local.wrap = true
+        -- vim.opt_local.textwidth = 0
+        -- vim.opt_local.wrapmargin = 0
+    end,
+})
 
 -- vim.diagnostic.config({
 --     virtual_text = false, -- in line
@@ -88,6 +119,7 @@ local ts_parsers = {
     "python",
     "go",
     "typst",
+    "markdown",
 }
 for _, parser in ipairs(ts_parsers) do
     vim.api.nvim_create_autocmd('FileType', {
