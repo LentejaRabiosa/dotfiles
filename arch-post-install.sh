@@ -24,7 +24,7 @@ passwd $user
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 pacman -Sy --noconfirm
-pacman -S --noconfirm neovim git sway foot firefox fish fisher eza fd less fzf ripgrep networkmanager openssh brightnessctl grub os-prober efibootmgr ttf-jetbrains-mono-nerd
+pacman -S --noconfirm neovim git sway sway-bg ly foot firefox fish fisher eza fd less fzf ripgrep networkmanager openssh brightnessctl grub os-prober efibootmgr ttf-jetbrains-mono-nerd
 
 ssh-keygen -t ed25519 -C $hostname
 eval "$(ssh-agent -s)"
@@ -36,5 +36,7 @@ os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
 
 systemctl enable NetworkManager
+systemctl enable ly@tty1.service
+systemctl disable getty@tty1.service
 
 echo "POST INSTALL COMPLETE"
