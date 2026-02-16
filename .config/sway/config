@@ -40,6 +40,8 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+output "*" bg ~/Descargas/arch-wallpaper.png fill
+
 input "type:keyboard" {
     xkb_layout "es"
     xkb_options caps:swapescape,ctrl:swap_lalt_lctl
@@ -59,5 +61,8 @@ bar {
     workspace_buttons no
     position top
     status_command i3status-rs
+    colors {
+        background #00000000
+    }
 }
 
