@@ -9,6 +9,8 @@ bindsym $mod+z exec zathura
 bindsym $mod+Shift+c kill
 bindsym $mod+Shift+e exit
 bindsym $mod+Shift+r reload
+bindsym $mod+Shift+Space floating toggle
+floating_modifier $mod
 
 bindsym $mod+b splith
 bindsym $mod+v splitv
@@ -55,6 +57,9 @@ input "type:touchpad" {
 }
 
 default_border pixel 0
+smart_gaps on
+gaps outer 0
+gaps inner 0
 
 bar {
     font JetBrains Mono Nerd Font 10
