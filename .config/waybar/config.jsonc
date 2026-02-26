@@ -1,0 +1,93 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", // Waybar at top layer
+    "spacing": 0, // Gaps between modules (4px)
+    "reload_style_on_change": true,
+
+    // Choose the order of the modules
+    "modules-left": [
+        "load"
+    ],
+
+    "modules-center": [
+        "user"
+    ],
+
+    "modules-right": [
+        "cpu",
+        "memory",
+        "temperature",
+        "backlight",
+        "battery",
+        "clock"
+    ],
+
+    // Modules configuration
+
+    "niri/workspaces": {
+        "disable-scroll": true,
+        "on-click": "",
+        "on-scroll-up": "",
+        "on-scroll-down": "",
+        "format": "{icon}",
+        "format-icons": {
+            "1": "I",
+            "2": "II",
+            "3": "III",
+            "4": "IV",
+            "5": "V",
+            "6": "VI",
+            "7": "VII",
+            "8": "VIII",
+            "9": "IX",
+            "10": "X"
+        }
+    },
+
+    "niri/window": {
+        "tooltip": false
+    },
+
+    "clock": {
+        "format-alt": "{:%Y-%m-%d}",
+        "tooltip": false
+    },
+
+    "user": {
+        "format": "{work_H} h {work_M} min",
+        "tooltip": false
+    },
+
+    "load": {
+        "format": "LOAD {load1} {load5} {load15}",
+        "tooltip": false
+    },
+
+    "cpu": {
+        "format": "CPU {usage}%",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "MEM {}%",
+        "tooltip": false
+    },
+
+    "temperature": {
+        "format": "TMP {temperatureC}°C",
+        "tooltip": false
+    },
+
+    "backlight": {
+        "format": "BRI {percent}%",
+        "tooltip": false
+    },
+
+    "battery": {
+        "format": "BAT {capacity}%",
+        "format-charging": "BAT charging {capacity}%",
+        "format-plugged": "BAT plugged {capacity}%",
+        "format-alt": "BAT {time}",
+        "tooltip": false
+    }
+}
