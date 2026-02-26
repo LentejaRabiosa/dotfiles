@@ -54,7 +54,7 @@
     },
 
     "user": {
-        "format": "{work_H} h {work_M} min",
+        "format": "UP {work_H} h {work_M} min",
         "tooltip": false
     },
 
@@ -80,6 +80,8 @@
 
     "backlight": {
         "format": "BRI {percent}%",
+        "scroll-step": 5.0,
+        "smooth-scrolling-threshold": 5.0,
         "tooltip": false
     },
 
