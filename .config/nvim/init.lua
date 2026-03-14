@@ -1,5 +1,7 @@
+-- global
 vim.g.mapleader = ' '
 
+-- options
 vim.o.scrolloff = 8
 vim.o.guicursor = ''
 vim.o.number = true
@@ -20,40 +22,19 @@ vim.o.ignorecase = true
 vim.o.listchars= 'tab:> ,trail:·,nbsp:+'
 vim.o.list = true
 
-local map = vim.keymap.set
+-- LSP
+local lsp_servers = {
+    'basedpyright',
+    'rust_analyzer',
+    'clangd',
+    'ts_ls',
+    'svelte',
+    'cssls',
+    'tinymist',
+}
+vim.lsp.enable(lsp_servers)
 
-map("n", "<leader>w", ":w<CR>")
-map("n", "<leader>a", ":wa<CR>")
-map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
-map({ 'n', 'v', 'x' }, '<leader>d', '"+d')
-map('n', '<leader>2', '<cmd>set tabstop=2 shiftwidth=2<cr>', { noremap = true })
-map('n', '<leader>4', '<cmd>set tabstop=4 shiftwidth=4<cr>', { noremap = true })
-map('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
-map('n', '<leader>lf', vim.lsp.buf.format)
-map('n', '<leader>o', '<cmd>Oil<cr>')
-
-require("zk").setup({
-    picker = "fzf_lua",
-
-    lsp = {
-        -- `config` is passed to `vim.lsp.start(config)`
-        config = {
-          name = "zk",
-          cmd = { "zk", "lsp" },
-          filetypes = { "markdown" },
-          -- on_attach = ...
-        },
-
-        -- automatically attach buffers in a zk notebook that match the given filetypes
-        auto_attach = {
-            enabled = true,
-        },
-    },
-})
-
-local zk_cmd = require("zk.commands")
-map('n', '<leader>zn', zk_cmd.get("ZkNotes"))
-
+-- typst config
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "typst",
     callback = function()
@@ -64,48 +45,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- vim.diagnostic.config({
---     virtual_text = false, -- in line
---     virtual_lines = { current_line = true }, -- new lines
---     underline = true,
--- })
-
-vim.lsp.config['basedpyright'] = require 'lsp.basedpyright'
-vim.lsp.config['rust_analyzer'] = require 'lsp.rust_analyzer'
-vim.lsp.config['clangd'] = require 'lsp.clangd'
-vim.lsp.config['ts_ls'] = require 'lsp.ts_ls'
-vim.lsp.config['svelte'] = require 'lsp.svelte'
-vim.lsp.config['cssls'] = require 'lsp.cssls'
-vim.lsp.config['tinymist'] = require 'lsp.tinymist'
-vim.lsp.enable({
-    'basedpyright',
-    'rust_analyzer', 
-    'clangd',
-    'ts_ls',
-    'svelte',
-    'cssls',
-    'tinymist',
-})
-
-local fzf = require("fzf-lua")
-fzf.setup({
-    winopts = {
-        border = "solid",
-        fullscreen = true,
-        preview = {
-            border = "solid",
-            winopts = {
-                number = false,
-            },
-        },
-    },
-})
-map("n", "<leader>f", fzf.files)
-map("n", "<leader>b", fzf.buffers)
-map("n", "<leader>ls", fzf.lsp_document_symbols)
-map("n", "<leader>ld", fzf.diagnostics_document)
-map("n", "<leader>r", fzf.registers)
-
+-- treesitter
 local ts_parsers = {
     "svelte",
     "typescript",
@@ -121,6 +61,7 @@ local ts_parsers = {
     "typst",
     "markdown",
 }
+
 for _, parser in ipairs(ts_parsers) do
     vim.api.nvim_create_autocmd('FileType', {
       pattern = { parser },
@@ -128,6 +69,22 @@ for _, parser in ipairs(ts_parsers) do
     })
 end
 
+-- PLUGIN: fzf-lua
+local fzf = require("fzf-lua")
+fzf.setup({
+    winopts = {
+        border = "solid",
+        fullscreen = true,
+        preview = {
+            border = "solid",
+            winopts = {
+                number = false,
+            },
+        },
+    },
+})
+
+-- PLUGIN: oil
 require("oil").setup({
     default_file_explorer = true,
     columns = {
@@ -162,6 +119,17 @@ require("oil").setup({
     },
 })
 
+-- PLUGIN: flash
+local flash = require('flash')
+flash.setup({
+    modes = {
+        search = {
+            enabled = true
+        }
+    }
+})
+
+-- PLUGIN: blink.cmp
 require("blink.cmp").setup({
     cmdline = { enabled = true },
     completion = {
@@ -181,10 +149,33 @@ require("blink.cmp").setup({
     },
 })
 
+-- THEME: kanso
 require("kanso").setup({
     compile = true,
     background = {
         dark = os.getenv("THEME") or "zen",
     },
 })
+
 vim.cmd("colorscheme kanso")
+
+-- MAPS
+local map = vim.keymap.set
+
+map("n", "<leader>w", ":w<CR>")
+map("n", "<leader>a", ":wa<CR>")
+map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
+map({ 'n', 'v', 'x' }, '<leader>d', '"+d')
+map('n', '<leader>2', '<cmd>set tabstop=2 shiftwidth=2<cr>', { noremap = true })
+map('n', '<leader>4', '<cmd>set tabstop=4 shiftwidth=4<cr>', { noremap = true })
+map('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
+
+map("n", "<leader>f", fzf.files)
+map("n", "<leader>b", fzf.buffers)
+map("n", "<leader>ls", fzf.lsp_document_symbols)
+map("n", "<leader>ld", fzf.diagnostics_document)
+map("n", "<leader>r", fzf.registers)
+
+map('n', '<leader>o', '<cmd>Oil<cr>')
+
+map('n', '<leader>s', flash.toggle)
