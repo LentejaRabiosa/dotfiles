@@ -1,10 +1,10 @@
 # My shitty . files
 
- - arch linux install scripts
+ - arch linux install & setup scripts
  - neovim
  - fish
  - foot
- - sway (i3status-rust)
+ - niri/hyprland/sway with waybar
 
 ## Arch Linux install scripts
 
@@ -20,6 +20,9 @@ There is no third party plugin manager for this config. All plugins repos are
 cloned inside `.local/share/nvim/site/pack/manual/start/` directory using the
 `install-neovim-plugins.sh` script.
 
+Looking to clone plugins in `.config/nvim/pack/nvim/start/` instead to be able
+to replace the script.
+
 ## Fish
 Nothing special, just `pure` plugin installed with `fisher` plugin manager.
 There is a `theme.fish` function to select different variants from the kanso
@@ -28,9 +31,11 @@ theme used by neovim and foot.
 ## Foot
 Nothing special.
 
-## Sway
-Minimal config. Requirements:
- - i3status-rust (for the status bar)
- - foot
+## Other programs
  - firefox
  - zathura
+
+## TO-DO
+ - SSH key generation script (for github keys)
+ - Better git diffs config
+ - Neovim plugins in .config/nvim/pack/nvim/start/
