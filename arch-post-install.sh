@@ -27,7 +27,7 @@ pacman -Sy --noconfirm
 pacman -S --noconfirm \
     neovim git fish fisher eza fd less fzf ripgrep \
     niri waybar swwww sway sway-bg ly \
-    foot firefox \
+    foot fuzzel firefox \
     networkmanager openssh brightnessctl \
     grub os-prober efibootmgr \
     ttf-jetbrains-mono-nerd
