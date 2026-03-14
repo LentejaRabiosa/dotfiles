@@ -34,8 +34,10 @@ Nothing special.
 ## Other programs
  - firefox
  - zathura
+ - stow
 
 ## TO-DO
  - SSH key generation script (for github keys)
  - Better git diffs config
  - Neovim plugins in .config/nvim/pack/nvim/start/
+ - Neovim neogit plugin
