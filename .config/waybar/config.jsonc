@@ -6,23 +6,45 @@
 
     // Choose the order of the modules
     "modules-left": [
-        "load"
+        "hyprland/workspaces",
+        "niri/workspaces",
     ],
 
     "modules-center": [
-        "user"
     ],
 
     "modules-right": [
+        "load",
         "cpu",
         "memory",
         "temperature",
         "backlight",
         "battery",
+        "user",
         "clock"
     ],
 
     // Modules configuration
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "on-click": "",
+        "on-scroll-up": "",
+        "on-scroll-down": "",
+        "format": "{icon}",
+        "format-icons": {
+            "1": "I",
+            "2": "II",
+            "3": "III",
+            "4": "IV",
+            "5": "V",
+            "6": "VI",
+            "7": "VII",
+            "8": "VIII",
+            "9": "IX",
+            "10": "X"
+        }
+    },
 
     "niri/workspaces": {
         "disable-scroll": true,
@@ -59,7 +81,8 @@
     },
 
     "load": {
-        "format": "LOAD {load1} {load5} {load15}",
+        "format": "LOAD {load1}",
+        "format-alt": "LOAD {load1} {load5} {load15}",
         "tooltip": false
     },
 
@@ -70,6 +93,7 @@
 
     "memory": {
         "format": "MEM {}%",
+        "format-alt": "MEM {used}/{total}GiB",
         "tooltip": false
     },
 
