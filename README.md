@@ -37,7 +37,8 @@ Nothing special.
  - stow
 
 ## TO-DO
- - SSH key generation script (for github keys)
- - Better git diffs config
- - Neovim plugins in .config/nvim/pack/nvim/start/
- - Neovim neogit plugin
+ - [ ] Bootloader script
+ - [ ] SSH key generation script (for github keys)
+ - [ ] Better git diffs config
+ - [ ] Neovim better tabs config
+ - [x] Neovim neogit plugin
