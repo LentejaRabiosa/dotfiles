@@ -22,6 +22,18 @@ vim.o.ignorecase = true
 vim.o.listchars= 'tab:> ,trail:·,nbsp:+'
 vim.o.list = true
 
+vim.pack.add({
+    "https://github.com/nvim-lua/plenary.nvim.git",
+    { src = "https://github.com/saghen/blink.cmp.git", version = "tags/v1.10.2" },
+    "https://github.com/ibhagwan/fzf-lua.git",
+    "https://github.com/nvim-treesitter/nvim-treesitter.git",
+    "https://github.com/webhooked/kanso.nvim.git",
+    "https://github.com/stevearc/oil.nvim.git",
+    "https://github.com/folke/flash.nvim.git",
+    "https://github.com/neovim/nvim-lspconfig.git",
+    "https://github.com/NeogitOrg/neogit.git",
+})
+
 -- LSP
 local lsp_servers = {
     'basedpyright',
@@ -83,6 +95,9 @@ fzf.setup({
         },
     },
 })
+
+-- PLUGIN: neogit
+local neogit = require('neogit')
 
 -- PLUGIN: oil
 require("oil").setup({
@@ -152,6 +167,7 @@ require("blink.cmp").setup({
 -- THEME: kanso
 require("kanso").setup({
     compile = true,
+    minimal = true,
     background = {
         dark = os.getenv("THEME") or "zen",
     },
@@ -179,3 +195,5 @@ map("n", "<leader>r", fzf.registers)
 map('n', '<leader>o', '<cmd>Oil<cr>')
 
 map('n', '<leader>s', flash.toggle)
+
+map('n', '<leader>g', neogit.open)
