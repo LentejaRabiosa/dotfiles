@@ -2,11 +2,10 @@
 vim.g.mapleader = ' '
 
 -- options
-vim.o.scrolloff = 8
 vim.o.guicursor = ''
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.signcolumn = 'yes' -- default: yes
+vim.o.signcolumn = 'yes'
 vim.o.termguicolors = true
 vim.o.wrap = false
 vim.o.tabstop = 4 -- the tab key
@@ -23,28 +22,11 @@ vim.o.listchars= 'tab:> ,trail:·,nbsp:+'
 vim.o.list = true
 
 vim.pack.add({
-    "https://github.com/nvim-lua/plenary.nvim.git",
-    { src = "https://github.com/saghen/blink.cmp.git", version = "tags/v1.10.2" },
     "https://github.com/ibhagwan/fzf-lua.git",
-    "https://github.com/nvim-treesitter/nvim-treesitter.git",
     "https://github.com/webhooked/kanso.nvim.git",
     "https://github.com/stevearc/oil.nvim.git",
-    "https://github.com/folke/flash.nvim.git",
-    "https://github.com/neovim/nvim-lspconfig.git",
-    "https://github.com/NeogitOrg/neogit.git",
+    "https://github.com/tpope/vim-fugitive",
 })
-
--- LSP
-local lsp_servers = {
-    'basedpyright',
-    'rust_analyzer',
-    'clangd',
-    'ts_ls',
-    'svelte',
-    'cssls',
-    'tinymist',
-}
-vim.lsp.enable(lsp_servers)
 
 -- typst config
 vim.api.nvim_create_autocmd("FileType", {
@@ -56,30 +38,6 @@ vim.api.nvim_create_autocmd("FileType", {
         -- vim.opt_local.wrapmargin = 0
     end,
 })
-
--- treesitter
-local ts_parsers = {
-    "svelte",
-    "typescript",
-    "javascript",
-    "html",
-    "css",
-    "cpp",
-    "rust",
-    "astro",
-    "zig",
-    "python",
-    "go",
-    "typst",
-    "markdown",
-}
-
-for _, parser in ipairs(ts_parsers) do
-    vim.api.nvim_create_autocmd('FileType', {
-      pattern = { parser },
-      callback = function() vim.treesitter.start() end,
-    })
-end
 
 -- PLUGIN: fzf-lua
 local fzf = require("fzf-lua")
@@ -95,9 +53,6 @@ fzf.setup({
         },
     },
 })
-
--- PLUGIN: neogit
-local neogit = require('neogit')
 
 -- PLUGIN: oil
 require("oil").setup({
@@ -134,36 +89,6 @@ require("oil").setup({
     },
 })
 
--- PLUGIN: flash
-local flash = require('flash')
-flash.setup({
-    modes = {
-        search = {
-            enabled = true
-        }
-    }
-})
-
--- PLUGIN: blink.cmp
-require("blink.cmp").setup({
-    cmdline = { enabled = true },
-    completion = {
-        ghost_text = { enabled = true },
-    },
-    sources = {
-        default = { 'lsp', 'buffer', 'snippets', 'path' },
-    },
-    keymap = {
-        ['<Tab>'] = { 'select_and_accept', 'fallback' },
-    },
-    fuzzy = {
-        implementation = "prefer_rust_with_warning",
-        prebuilt_binaries = {
-            download = true,
-        },
-    },
-})
-
 -- THEME: kanso
 require("kanso").setup({
     compile = true,
@@ -178,8 +103,6 @@ vim.cmd("colorscheme kanso")
 -- MAPS
 local map = vim.keymap.set
 
-map("n", "<leader>w", ":w<CR>")
-map("n", "<leader>a", ":wa<CR>")
 map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
 map({ 'n', 'v', 'x' }, '<leader>d', '"+d')
 map('n', '<leader>2', '<cmd>set tabstop=2 shiftwidth=2<cr>', { noremap = true })
@@ -188,12 +111,7 @@ map('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
 
 map("n", "<leader>f", fzf.files)
 map("n", "<leader>b", fzf.buffers)
-map("n", "<leader>ls", fzf.lsp_document_symbols)
-map("n", "<leader>ld", fzf.diagnostics_document)
 map("n", "<leader>r", fzf.registers)
+map("n", "<leader>/", fzf.lgrep_curbuf)
 
-map('n', '<leader>o', '<cmd>Oil<cr>')
-
-map('n', '<leader>s', flash.toggle)
-
-map('n', '<leader>g', neogit.open)
+map("n", "<leader>o", "<cmd>Oil<cr>")
