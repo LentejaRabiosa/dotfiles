@@ -27,6 +27,7 @@
     // Modules configuration
 
     "hyprland/workspaces": {
+        "disable-click": true,
         "disable-scroll": true,
         "on-click": "",
         "on-scroll-up": "",
@@ -76,44 +77,44 @@
     },
 
     "user": {
-        "format": "UP {work_H} h {work_M} min",
+        "format": "{work_H} h {work_M} min",
         "tooltip": false
     },
 
     "load": {
-        "format": "LOAD {load1}",
-        "format-alt": "LOAD {load1} {load5} {load15}",
+        "format": "load {load1}",
+        "format-alt": "load {load1} {load5} {load15}",
         "tooltip": false
     },
 
     "cpu": {
-        "format": "CPU {usage}%",
+        "format": "cpu {usage}%",
         "tooltip": false
     },
 
     "memory": {
-        "format": "MEM {}%",
-        "format-alt": "MEM {used}/{total}GiB",
+        "format": "mem {}%",
+        "format-alt": "mem {used}/{total}GiB",
         "tooltip": false
     },
 
     "temperature": {
-        "format": "TMP {temperatureC}°C",
+        "format": "tmp {temperatureC}°C",
         "tooltip": false
     },
 
     "backlight": {
-        "format": "BRI {percent}%",
+        "format": "bri {percent}%",
         "scroll-step": 5.0,
         "smooth-scrolling-threshold": 5.0,
         "tooltip": false
     },
 
     "battery": {
-        "format": "BAT {capacity}%",
-        "format-charging": "BAT charging {capacity}%",
-        "format-plugged": "BAT plugged {capacity}%",
-        "format-alt": "BAT {time}",
+        "format": "bat {capacity}%",
+        "format-charging": "bat charging {capacity}%",
+        "format-plugged": "bat plugged {capacity}%",
+        "format-alt": "bat {time}",
         "tooltip": false
     }
 }
