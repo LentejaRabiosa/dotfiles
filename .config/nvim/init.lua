@@ -22,7 +22,7 @@ vim.o.listchars= 'tab:> ,trail:·,nbsp:+'
 vim.o.list = true
 
 vim.pack.add({
-    "https://github.com/ibhagwan/fzf-lua.git",
+    "https://github.com/dmtrKovalenko/fff.nvim",
     "https://github.com/webhooked/kanso.nvim.git",
     "https://github.com/stevearc/oil.nvim.git",
     "https://github.com/tpope/vim-fugitive",
@@ -39,22 +39,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- PLUGIN: fzf-lua
-local fzf = require("fzf-lua")
-fzf.setup({
-    winopts = {
-        border = "solid",
-        fullscreen = true,
-        preview = {
-            border = "solid",
-            winopts = {
-                number = false,
-            },
-        },
-    },
-})
-
--- PLUGIN: oil
 require("oil").setup({
     default_file_explorer = true,
     columns = {
@@ -89,7 +73,14 @@ require("oil").setup({
     },
 })
 
--- THEME: kanso
+require('fff').setup({
+    prompt = '> ',
+    layout = {
+        height = 0.8,
+        width = 0.8,
+    },
+})
+
 require("kanso").setup({
     compile = true,
     minimal = true,
@@ -109,9 +100,7 @@ map('n', '<leader>2', '<cmd>set tabstop=2 shiftwidth=2<cr>', { noremap = true })
 map('n', '<leader>4', '<cmd>set tabstop=4 shiftwidth=4<cr>', { noremap = true })
 map('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
 
-map("n", "<leader>f", fzf.files)
-map("n", "<leader>b", fzf.buffers)
-map("n", "<leader>r", fzf.registers)
-map("n", "<leader>/", fzf.lgrep_curbuf)
+map('n', '<leader>f', require('fff').find_files)
+map('n', '<leader>/', require('fff').live_grep)
 
 map("n", "<leader>o", "<cmd>Oil<cr>")
