@@ -82,8 +82,8 @@
     },
 
     "load": {
-        "format": "load {load1}",
-        "format-alt": "load {load1} {load5} {load15}",
+        "format": "loa {load1}",
+        "format-alt": "loa {load1} {load5} {load15}",
         "tooltip": false
     },
 
@@ -99,7 +99,7 @@
     },
 
     "temperature": {
-        "format": "tmp {temperatureC}°C",
+        "format": "tem {temperatureC}°C",
         "tooltip": false
     },
 
