@@ -41,4 +41,3 @@ Nothing special.
  - [ ] SSH key generation script (for github keys)
  - [ ] Better git diffs config
  - [ ] Neovim better tabs config
- - [x] Neovim neogit plugin
