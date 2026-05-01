@@ -22,15 +22,19 @@ vim.o.listchars= 'tab:> ,trail:·,nbsp:+'
 vim.o.list = true
 
 vim.pack.add({
-    "https://github.com/dmtrKovalenko/fff.nvim",
-    "https://github.com/webhooked/kanso.nvim.git",
-    "https://github.com/stevearc/oil.nvim.git",
-    "https://github.com/tpope/vim-fugitive",
+    { src = 'https://github.com/saghen/blink.cmp', version = 'tags/v1.10.2' },
+    'https://github.com/neovim/nvim-lspconfig.git',
+    'https://github.com/dmtrKovalenko/fff.nvim',
+    'https://github.com/webhooked/kanso.nvim.git',
+    'https://github.com/stevearc/oil.nvim.git',
+    'https://github.com/tpope/vim-fugitive',
 })
 
+vim.lsp.enable('rust_analyzer')
+
 -- typst config
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "typst",
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'typst',
     callback = function()
         vim.opt_local.linebreak = true
         vim.opt_local.wrap = true
@@ -39,12 +43,31 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
-require("oil").setup({
+require("blink.cmp").setup({
+    cmdline = { enabled = true },
+    completion = {
+        ghost_text = { enabled = true },
+    },
+    sources = {
+        default = { 'lsp', 'buffer', 'snippets', 'path' },
+    },
+    keymap = {
+        ['<Tab>'] = { 'select_and_accept', 'fallback' },
+    },
+    fuzzy = {
+        implementation = "prefer_rust_with_warning",
+        prebuilt_binaries = {
+            download = true,
+        },
+    },
+})
+
+require('oil').setup({
     default_file_explorer = true,
     columns = {
-        "permissions",
-        "size",
-        "mtime",
+        'permissions',
+        'size',
+        'mtime',
     },
     delete_to_trash = false,
     skip_confirm_for_simple_edits = false,
@@ -54,21 +77,21 @@ require("oil").setup({
         timeout_ms = 1000,
         autosave_changes = false,
     },
-    constrain_cursor = "editable", -- or "name"
+    constrain_cursor = 'editable', -- or 'name'
     view_options = {
         show_hidden = true,
         is_hidden_file = function(name, bufnr)
-            local m = name:match("^%.")
+            local m = name:match('^%.')
             return m ~= nil
         end,
         is_always_hidden = function(name, bufnr)
             return false
         end,
-        natural_order = "fast",
+        natural_order = 'fast',
         case_insensitive = false,
         sort = {
-            { "type", "asc" },
-            { "name", "asc" },
+            { 'type', 'asc' },
+            { 'name', 'asc' },
         },
     },
 })
@@ -81,19 +104,21 @@ require('fff').setup({
     },
 })
 
-require("kanso").setup({
+require('kanso').setup({
     compile = true,
     minimal = true,
     background = {
-        dark = os.getenv("THEME") or "zen",
+        dark = os.getenv('THEME') or 'zen',
     },
 })
 
-vim.cmd("colorscheme kanso")
+vim.cmd('colorscheme kanso')
 
 -- MAPS
 local map = vim.keymap.set
-
+map('n', '<leader>w', '<cmd>w<cr>')
+map('n', '<leader>a', '<cmd>wa<cr>')
+map('n', '<leader>q', '<cmd>wqa<cr>')
 map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
 map({ 'n', 'v', 'x' }, '<leader>d', '"+d')
 map('n', '<leader>2', '<cmd>set tabstop=2 shiftwidth=2<cr>', { noremap = true })
@@ -103,4 +128,6 @@ map('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
 map('n', '<leader>f', require('fff').find_files)
 map('n', '<leader>/', require('fff').live_grep)
 
-map("n", "<leader>o", "<cmd>Oil<cr>")
+map('n', '<leader>lf', vim.lsp.buf.format)
+
+map('n', '<leader>o', '<cmd>Oil<cr>')
