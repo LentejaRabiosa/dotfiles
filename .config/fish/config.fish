@@ -1,9 +1,9 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
-    alias ls="eza -l -s type"
-    alias l="ls -a"
-    alias ll="eza -1 -s type"
+    alias ls="eza -1 -s type"
+    alias l="eza -1 -a -s type"
+    alias ll="eza -l -a -s type"
     alias t="l -T"
     alias hx="helix"
 
