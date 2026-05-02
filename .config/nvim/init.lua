@@ -31,6 +31,7 @@ vim.pack.add({
 })
 
 vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('clangd')
 
 -- typst config
 vim.api.nvim_create_autocmd('FileType', {
