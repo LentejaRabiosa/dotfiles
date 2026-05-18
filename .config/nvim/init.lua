@@ -28,6 +28,7 @@ vim.pack.add({
     'https://github.com/webhooked/kanso.nvim.git',
     'https://github.com/stevearc/oil.nvim.git',
     'https://github.com/tpope/vim-fugitive',
+    'https://github.com/stevearc/quicker.nvim',
 })
 
 vim.lsp.enable('rust_analyzer')
@@ -43,6 +44,15 @@ vim.api.nvim_create_autocmd('FileType', {
         -- vim.opt_local.wrapmargin = 0
     end,
 })
+
+-- Auto-populate Neovim quickfix list on diagnostic changes
+-- vim.api.nvim_create_autocmd("DiagnosticChanged", {
+--   callback = function()
+--     vim.diagnostic.setqflist({ open = false })
+--   end,
+-- })
+
+require("quicker").setup()
 
 require("blink.cmp").setup({
     cmdline = { enabled = true },
@@ -129,6 +139,9 @@ map('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
 map('n', '<leader>f', require('fff').find_files)
 map('n', '<leader>/', require('fff').live_grep)
 
+map('n', '<leader>c', require('quicker').toggle)
+
 map('n', '<leader>lf', vim.lsp.buf.format)
+map('n', '<leader>lc', vim.diagnostic.setqflist)
 
 map('n', '<leader>o', '<cmd>Oil<cr>')
