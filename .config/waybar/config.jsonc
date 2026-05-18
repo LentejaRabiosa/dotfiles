@@ -112,8 +112,8 @@
 
     "battery": {
         "format": "bat {capacity}%",
-        "format-charging": "bat charging {capacity}%",
-        "format-plugged": "bat plugged {capacity}%",
+        "format-charging": "bat cha {capacity}%",
+        "format-plugged": "bat plu {capacity}%",
         "format-alt": "bat {time}",
         "tooltip": false
     }
