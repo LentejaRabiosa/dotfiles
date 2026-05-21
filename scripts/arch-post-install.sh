@@ -29,7 +29,7 @@ pacman -S --noconfirm \
     niri waybar swwww sway sway-bg ly \
     foot fuzzel firefox \
     networkmanager openssh brightnessctl \
-    nmap tcpdump \
+    nmap tcpdump p0f arp-scan \
     grub os-prober efibootmgr \
     ttf-jetbrains-mono-nerd
 
