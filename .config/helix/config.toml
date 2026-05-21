@@ -1,5 +1,0 @@
-theme = "kanagawa-dragon"
-
-[editor]
-true-color = true
-line-number = "relative"
