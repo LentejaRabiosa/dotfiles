@@ -139,9 +139,9 @@ map('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
 map('n', '<leader>f', require('fff').find_files)
 map('n', '<leader>/', require('fff').live_grep)
 
-map('n', '<leader>c', require('quicker').toggle)
-
 map('n', '<leader>lf', vim.lsp.buf.format)
 map('n', '<leader>lc', vim.diagnostic.setqflist)
+map('n', '<leader>le', function() vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.ERROR }) end)
 
 map('n', '<leader>o', '<cmd>Oil<cr>')
+map('n', '<leader>c', require('quicker').toggle)
