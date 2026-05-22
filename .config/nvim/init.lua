@@ -142,6 +142,7 @@ map('n', '<leader>/', require('fff').live_grep)
 map('n', '<leader>lf', vim.lsp.buf.format)
 map('n', '<leader>lc', vim.diagnostic.setqflist)
 map('n', '<leader>le', function() vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.ERROR }) end)
+map('n', '<leader>lw', function() vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.WARN }) end)
 
 map('n', '<leader>o', '<cmd>Oil<cr>')
 map('n', '<leader>c', require('quicker').toggle)
