@@ -20,6 +20,7 @@
         "temperature",
         "backlight",
         "battery",
+        "hyprland/language",
         "user",
         "clock"
     ],
@@ -79,6 +80,12 @@
     "user": {
         "format": "{work_H} h {work_M} min",
         "tooltip": false
+    },
+
+    "hyprland/language": {
+        "format": "{}",
+        "format-es": "es",
+        "format-en": "en"
     },
 
     "load": {
