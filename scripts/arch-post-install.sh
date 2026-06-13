@@ -28,8 +28,9 @@ pacman -S --noconfirm \
     neovim git fish fisher eza fd less fzf ripgrep \
     niri waybar swwww sway sway-bg ly \
     foot fuzzel firefox \
+    sof-firmware pipewire pipewire-pulse wireplumber \
     networkmanager openssh brightnessctl \
-    nmap tcpdump p0f arp-scan \
+    bind nmap tcpdump p0f arp-scan \
     grub os-prober efibootmgr \
     ttf-jetbrains-mono-nerd
 
