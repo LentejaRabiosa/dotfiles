@@ -17,7 +17,7 @@ alias grep="grep --color=auto"
 PS1="\h@\u at \w "
 
 # nvm
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
 
 # uv
 export PATH="/home/alex/.local/bin:$PATH"
