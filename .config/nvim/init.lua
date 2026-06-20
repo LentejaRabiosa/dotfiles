@@ -1,11 +1,9 @@
--- global
 vim.g.mapleader = ' '
 
--- options
 -- vim.o.guicursor = '' -- cursor block
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.cursorline = false
+vim.o.cursorline = true
 vim.o.signcolumn = 'yes'
 vim.o.termguicolors = true
 vim.o.wrap = false
@@ -14,35 +12,35 @@ vim.o.shiftwidth = 4 -- <> operations
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.swapfile = false
-vim.o.winborder = 'solid'
+vim.o.winborder = 'none'
 vim.o.undofile = true
 vim.o.undodir = vim.fn.expand('$HOME/.undodir')
 vim.o.incsearch = true
 vim.o.ignorecase = true
 vim.o.listchars= 'tab:> ,trail:·,nbsp:+'
 vim.o.list = true
+vim.opt.fixendofline = true
+vim.opt.endofline = true
 
 vim.cmd.packadd('nvim.undotree')
-
 vim.pack.add({
-    { src = 'https://github.com/saghen/blink.cmp', version = 'tags/v1.10.2' },
-    'https://github.com/ibhagwan/fzf-lua',
-    'https://github.com/neovim/nvim-lspconfig.git',
-    'https://github.com/miikanissi/modus-themes.nvim',
     'https://github.com/tpope/vim-fugitive',
     'https://github.com/tpope/vim-surround',
     'https://github.com/tpope/vim-repeat',
+    'https://github.com/tpope/vim-vinegar',
 })
 
-require("modus-themes").setup({
-    line_nr_column_background = false,
-    sign_column_background = false,
-})
+function UseFd(cmdarg, cmdcomplete)
+    local files = vim.fn.systemlist('fd --type f --hidden -E .git --full-path')
 
-vim.cmd('colorscheme modus_vivendi')
+    if cmdarg == nil or cmdarg == "" then
+        return files
+    end
 
-vim.lsp.enable('rust_analyzer')
-vim.lsp.enable('clangd')
+    local matches = vim.fn.matchfuzzy(files, cmdarg or '')
+    return matches
+end
+vim.o.findfunc = "v:lua.UseFd"
 
 -- typst config
 vim.api.nvim_create_autocmd('FileType', {
@@ -55,61 +53,16 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
--- Auto-populate Neovim quickfix list on diagnostic changes
--- vim.api.nvim_create_autocmd("DiagnosticChanged", {
---   callback = function()
---     vim.diagnostic.setqflist({ open = false })
---   end,
--- })
-
-require('blink.cmp').setup({
-    cmdline = { enabled = true },
-    completion = {
-        ghost_text = { enabled = true },
-    },
-    sources = {
-        default = { 'lsp', 'path' },
-        -- default = { 'lsp', 'buffer', 'snippets', 'path' },
-    },
-    keymap = {
-        ['<Tab>'] = { 'select_and_accept', 'fallback' },
-    },
-    fuzzy = {
-        implementation = 'prefer_rust_with_warning',
-        prebuilt_binaries = {
-            download = true,
-        },
-    },
-})
-
-local fzf = require('fzf-lua')
-fzf.setup({'ivy'})
-
--- MAPS
 local map = vim.keymap.set
 map('n', '<Space>', '<Nop>')
-map('n', '<leader>w', '<cmd>w<cr>')
-map('n', '<leader>a', '<cmd>wa<cr>')
-map('n', '<leader>q', '<cmd>wqa<cr>')
 map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
 map({ 'n', 'v', 'x' }, '<leader>d', '"+d')
-map('n', '<leader>2', '<cmd>set tabstop=2 shiftwidth=2<cr>', { noremap = true })
-map('n', '<leader>4', '<cmd>set tabstop=4 shiftwidth=4<cr>', { noremap = true })
-map('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8<cr>', { noremap = true })
 map('n', '<C-n>', '<cmd>cnext<cr>')
 map('n', '<C-p>', '<cmd>cprev<cr>')
-
-map('n', '<leader>f', fzf.files)
-map('n', '<leader>g', fzf.git_files)
-map('n', '<leader>b', fzf.buffers)
-map('n', '<leader>r', fzf.registers)
-map('n', '<leader>/', fzf.lgrep_curbuf)
-map('n', '<leader>ld', fzf.lsp_document_diagnostics)
-map('n', '<leader>lD', fzf.lsp_workspace_diagnostics)
-map('n', '<leader>ls', fzf.lsp_document_symbols)
-map('n', '<leader>lS', fzf.lsp_workspace_symbols)
-
-map('n', '<leader>s', '<cmd>LspClangdSwitchSourceHeader<cr>')
-map('n', '<leader>lc', vim.diagnostic.setqflist)
-
+map('n', '<leader>q', '<cmd>copen<cr>')
+map('n', '<leader>Q', '<cmd>cclose<cr>')
+map('n', '<leader>e', '<cmd>Ex<cr>')
 map('n', '<leader>u', '<cmd>Undotree<cr>')
+map('n', '<leader>f', ':find ')
+map('i', '<C-s>', 'std::', { noremap = true, silent = true })
+map('n', '<leader>m', ':make ')
