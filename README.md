@@ -15,7 +15,9 @@ Clone the repo at home and run `stow --adopt .` (be careful).
  3. Run `arch-install.sh`
  4. On success, run `arch-post-install.sh`
 
-Note: `nmcli-connect-eduroam.sh` is a command template, not a script (yet)
+## More scripts
+
+ - `nmcli-connect-eduroam.sh` adds and configures an eduroam connection.
 
 ## Foot
 
@@ -48,4 +50,3 @@ Some aliases.
  - [ ] Bootloader script
  - [ ] SSH key generation script (for github keys)
  - [ ] Better git diffs config
- - [ ] Turn `nmcli-connect-eduroam.sh` into script
