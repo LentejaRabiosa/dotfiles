@@ -1,24 +1,25 @@
 vim.g.mapleader = ' '
 
 -- vim.o.guicursor = '' -- cursor block
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.cursorline = true
-vim.o.signcolumn = 'yes'
-vim.o.termguicolors = true
-vim.o.wrap = false
-vim.o.tabstop = 4 -- the tab key
-vim.o.shiftwidth = 4 -- <> operations
-vim.o.expandtab = true
-vim.o.smartindent = true
-vim.o.swapfile = false
-vim.o.winborder = 'none'
-vim.o.undofile = true
-vim.o.undodir = vim.fn.expand('$HOME/.undodir')
-vim.o.incsearch = true
-vim.o.ignorecase = true
-vim.o.listchars= 'tab:> ,trail:·,nbsp:+'
-vim.o.list = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
+vim.opt.signcolumn = 'yes'
+vim.opt.termguicolors = true
+vim.opt.wrap = false
+vim.opt.tabstop = 4 -- the tab key
+vim.opt.shiftwidth = 4 -- <> operations
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.swapfile = false
+vim.opt.winborder = 'none'
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.expand('$HOME/.undodir')
+vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.listchars= 'tab:> ,trail:·,nbsp:+'
+vim.opt.list = true
+vim.opt.grepprg = 'rg --vimgrep'
 vim.opt.fixendofline = true
 vim.opt.endofline = true
 
@@ -40,7 +41,7 @@ function UseFd(cmdarg, cmdcomplete)
     local matches = vim.fn.matchfuzzy(files, cmdarg or '')
     return matches
 end
-vim.o.findfunc = "v:lua.UseFd"
+vim.opt.findfunc = "v:lua.UseFd"
 
 -- typst config
 vim.api.nvim_create_autocmd('FileType', {
@@ -63,6 +64,7 @@ map('n', '<leader>q', '<cmd>copen<cr>')
 map('n', '<leader>Q', '<cmd>cclose<cr>')
 map('n', '<leader>e', '<cmd>Ex<cr>')
 map('n', '<leader>u', '<cmd>Undotree<cr>')
-map('n', '<leader>f', ':find ')
 map('i', '<C-s>', 'std::', { noremap = true, silent = true })
+map('n', '<leader>f', ':find ')
 map('n', '<leader>m', ':make ')
+map('n', '<leader>g', ':grep ')
