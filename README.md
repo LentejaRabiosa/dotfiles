@@ -8,23 +8,18 @@ Clone the repo at home and run `stow --adopt .` (be careful).
  - bash
  - neovim
 
-## Arch Linux install scripts
+## Arch Linux install
+You can see the packages in `packages.txt`.
 
  1. Set up partitions and file system
  2. Connect to the internet
  3. Run `arch-install.sh`
- 4. On success, run `arch-post-install.sh`
+ 4. On success, run `arch-setup.sh`
 
 ## More scripts
-
- - `nmcli-connect-eduroam.sh` adds and configures an eduroam connection.
-
-## Foot
-
-Nothing special here.
+ - `nmcli-connect-eduroam.sh` adds and configures an eduroam connection
 
 ## Neovim
-
 Super simple and native config. No fancy plugins, only the important ones.
 
  - [vim-fugitive](https://github.com/tpope/vim-fugitive)
@@ -34,19 +29,6 @@ Super simple and native config. No fancy plugins, only the important ones.
 
 The `:find` command has it's own custom `findfunc` using `fd` and `vim.fn.matchfuzzy`.
 
-## Bash
-
-Some aliases.
-
-## Other programs
-
- - firefox
- - zathura
- - stow
- - fuzzel
-
 ## TO-DO
-
- - [ ] Bootloader script
+ - [ ] Bootloader restore script
  - [ ] SSH key generation script (for github keys)
- - [ ] Better git diffs config
