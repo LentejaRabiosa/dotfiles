@@ -1,21 +1,12 @@
-# My shitty . files
-> **Warning**
-> This repository is highly opinionated and tailored to my own workflow.
+# My shitty dotfiles
 
-The dotfiles are managed with `stow`.
+**Warning:** this repository is highly opinionated and tailored to my own workflow.
 
-Clone the repository into your home directory and run:
+The dotfiles are managed with `stow`. Clone the repository into your home directory and run:
+
 ```sh
-cd dotfiles
-stow --adopt .
+stow --adopt dotfiles
 ```
-
-## Content
- - Arch Linux installation and setup scripts
- - Hyprland and Waybar
- - Foot terminal
- - Bash
- - Neovim
 
 ## Arch Linux install
 The list of packages is defined in `packages.txt`.
