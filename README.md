@@ -1,34 +1,37 @@
 # My shitty . files
-Note that `stow` is being used here to setup the dotfiles in place.
-Clone the repo at home and run `stow --adopt .` (be careful).
+> **Warning**
+> This repository is highly opinionated and tailored to my own workflow.
 
- - arch linux install & setup scripts
- - hyprland & waybar
- - foot terminal
- - bash
- - neovim
+The dotfiles are managed with `stow`.
+
+Clone the repository into your home directory and run:
+```sh
+cd dotfiles
+stow --adopt .
+```
+
+## Content
+ - Arch Linux installation and setup scripts
+ - Hyprland and Waybar
+ - Foot terminal
+ - Bash
+ - Neovim
 
 ## Arch Linux install
-You can see the packages in `packages.txt`.
+The list of packages is defined in `packages.txt`.
 
- 1. Set up partitions and file system
- 2. Connect to the internet
- 3. Run `arch-install.sh`
- 4. On success, run `arch-setup.sh`
+ 1. Partition and mount your disks.
+ 2. Connect to the internet.
+ 3. Run `arch-install.sh`.
 
 ## More scripts
- - `nmcli-connect-eduroam.sh` adds and configures an eduroam connection
+ - `nmcli-connect-eduroam.sh` creates and configures an eduroam connection.
 
 ## Neovim
-Super simple and native config. No fancy plugins, only the important ones.
+A minimal, mostly native configuration with only a few essential plugins.
 
- - [vim-fugitive](https://github.com/tpope/vim-fugitive)
- - [vim-surround](https://github.com/tpope/vim-surround)
- - [vim-repeat](https://github.com/tpope/vim-repeat)
- - [vim-vinegar](https://github.com/tpope/vim-vinegar)
+The `:find` command uses a custom `findfunc` based on `fd` and `vim.fn.matchfuzzy`.
 
-The `:find` command has it's own custom `findfunc` using `fd` and `vim.fn.matchfuzzy`.
-
-## TO-DO
- - [ ] Bootloader restore script
- - [ ] SSH key generation script (for github keys)
+## TODO
+ - [ ] Bootloader recovery script
+ - [ ] GitHub SSH key generation script
