@@ -8,6 +8,9 @@ fzf
 ripgrep
 
 hyprland
+hyprlock
+hyprpicker
+hyprshot
 waybar
 awwww
 foot
